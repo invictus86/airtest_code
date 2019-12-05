@@ -6,15 +6,16 @@ from airtest.cli.parser import cli_setup
 from airtest.core.win.win import Windows
 
 if not cli_setup():
-    auto_setup(__file__, logdir=True, devices=[
+    auto_setup(__file__, logdir="./log/", devices=[
         "Windows:///",
         # "Windows:///?title_re=New Session*",
-    ])
+    ]
+               )
 
 # script content
 print("start...")
 
-print(ST.THRESHOLD)
+# print(ST.THRESHOLD)
 # with open("my-testflow/res/img/Snipaste_2019-12-04_11-18-52.png", "rb") as f:
 # with open(r"../res/img/Snipaste_2019-12-04_11-18-52.png", "rb") as f:
 #     print(f.read())
@@ -22,7 +23,7 @@ print(ST.THRESHOLD)
 # text("aaa")
 # touch(Template(r"tpl1575363995837.png", record_pos=(-0.478, -0.027), resolution=(3200, 1080)))
 # touch(Template(r"tpl1575363995837.png"))
-# touch(Template(r"../res/img/Snipaste_2019-12-04_11-18-52.png"))
+touch(Template(r"../res/img/Snipaste_2019-12-04_11-18-52.png"))
 
 # touch(Template(r"../res/img/Snipaste_2019-12-04_11-18-52.png"))
 
