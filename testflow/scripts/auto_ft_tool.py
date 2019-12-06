@@ -3,24 +3,9 @@ __author__ = "ivan.zhao"
 
 from airtest.core.api import *
 from airtest.cli.parser import cli_setup
-import os
-
-
-def del_files(path_file):
-    ls = os.listdir(path_file)
-    for i in ls:
-        f_path = os.path.join(path_file, i)
-        # 判断是否是一个目录,若是,则递归删除
-        if os.path.isdir(f_path):
-            del_files(f_path)
-        else:
-            os.remove(f_path)
-
-
-del_files("./log/")
 
 if not cli_setup():
-    auto_setup(__file__, logdir="./log/", devices=[
+    auto_setup(__file__, logdir=r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\log", devices=[
         "Windows:///",
     ]
                )
