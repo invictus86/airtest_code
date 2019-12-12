@@ -76,6 +76,7 @@ def xshell_import_cmd(list_cmd):
             transfer_str = transfer_str + single_str
         print(transfer_str.split(" "))
         list_single_cmd = transfer_str.split(" ")
+        sleep(0.5)
         for single_cmd in list_single_cmd:
             text(single_cmd)
             print(single_cmd)
