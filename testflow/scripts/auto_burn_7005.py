@@ -7,7 +7,7 @@ import socket
 import sys
 
 if not cli_setup():
-    auto_setup(__file__, logdir=True, devices=[
+    auto_setup(__file__, logdir=r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\log", devices=[
         #             "Windows:///524676",
         "Windows:///?title_re=localhost_serial*",
         #         "Windows:///?title_re=*Xshell",
