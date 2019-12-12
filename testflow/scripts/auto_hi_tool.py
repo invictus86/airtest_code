@@ -13,13 +13,14 @@ if not cli_setup():
 # script content
 print("start...")
 
-assert_exists(Template(r"../res/img/hitool_hi3716mv450.png"))
-
-touch(Template(r"../res/img/jtag_network.png"))
-
-touch(Template(r"../res/img/burn.png"))
-# time.sleep(0.5)
-
-time.sleep(85)
-assert_exists(Template(r"../res/img/burn_success.png"))
-time.sleep(3)
+assert_exists(Template(r"../res/img/111.png"))
+# assert_exists(Template(r"../res/img/hitool_hi3716mv450.png"))
+#
+# touch(Template(r"../res/img/jtag_network.png"))
+#
+# touch(Template(r"../res/img/burn.png"))
+# # time.sleep(0.5)
+#
+# time.sleep(85)
+# assert_exists(Template(r"../res/img/burn_success.png"))
+# time.sleep(3)
