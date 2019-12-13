@@ -94,6 +94,7 @@ for _ in range(5):
     keyevent("{ENTER}")
     sleep(1)
 time.sleep(5)
+assert_exists(Template(r"../res/img/ali_arm.png", threshold=0.9))
 
 cmd101 = "set serverip {}; set ipaddr 192.168.1.157;".format(current_ip)
 cmd102 = "tftp 0x80007fc0 product_sabbat_dual.abs;"
@@ -109,7 +110,7 @@ xshell_import_cmd([cmd102])
 time.sleep(2)
 assert_exists(Template(r"../res/img/cmd102_success.png", threshold=0.9))
 xshell_import_cmd([cmd103])
-time.sleep(5)
+time.sleep(15)
 assert_exists(Template(r"../res/img/cmd103_success.png", threshold=0.9))
 xshell_import_cmd([cmd104])
 time.sleep(1)
@@ -118,11 +119,11 @@ xshell_import_cmd([cmd105])
 time.sleep(1)
 assert_exists(Template(r"../res/img/cmd105_success.png", threshold=0.9))
 xshell_import_cmd([cmd106])
-time.sleep(10)
+time.sleep(2)
+assert_exists(Template(r"../res/img/cmd106_success.png", threshold=0.9))
 xshell_import_cmd([cmd107])
-time.sleep(10)
-
-# assert_exists(Template(r"../res/img/cmd22_success.png", threshold=0.9))
+time.sleep(2)
+assert_exists(Template(r"../res/img/cmd107_success.png", threshold=0.9))
 
 
 power_off()
@@ -135,6 +136,7 @@ for _ in range(5):
     keyevent("{ENTER}")
     sleep(1)
 time.sleep(5)
+assert_exists(Template(r"../res/img/cmd_begin.png", threshold=0.9))
 
 # cmd1 = "set serverip 192.168.16.222; set ipaddr 192.168.16.157;"
 cmd1 = "set serverip {}; set ipaddr 192.168.1.157;".format(current_ip)
