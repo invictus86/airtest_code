@@ -91,6 +91,42 @@ power_on()
 sleep(5)
 
 for _ in range(5):
+    keyevent("{ENTER}")
+    sleep(1)
+time.sleep(5)
+
+cmd101 = "set serverip {}; set ipaddr 192.168.1.157;".format(current_ip)
+cmd102 = "tftp 0x80007fc0 product_sabbat_dual.abs;"
+cmd103 = "nor write 0x80007fc0 0 0x240000"
+cmd104 = "tftp 0x80007fc0 ID_0x02fd0100_s_ekt.bin;"
+cmd105 = "nor write 0x80007fc0 0x240000 0x20000"
+cmd106 = "otp write 370 04000000 8"
+cmd107 = "otp write c 02000000 8"
+
+xshell_import_cmd([cmd101])
+time.sleep(1)
+xshell_import_cmd([cmd102])
+time.sleep(10)
+xshell_import_cmd([cmd103])
+time.sleep(10)
+xshell_import_cmd([cmd104])
+time.sleep(10)
+xshell_import_cmd([cmd105])
+time.sleep(10)
+xshell_import_cmd([cmd106])
+time.sleep(10)
+xshell_import_cmd([cmd107])
+time.sleep(10)
+
+# assert_exists(Template(r"../res/img/cmd22_success.png", threshold=0.9))
+
+
+power_off()
+sleep(3)
+power_on()
+sleep(5)
+
+for _ in range(5):
     text("A2tmGHgGjYgV1MN4")
     keyevent("{ENTER}")
     sleep(1)
