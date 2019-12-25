@@ -95,6 +95,7 @@ for _ in range(5):
     keyevent("{ENTER}")
     sleep(1)
 time.sleep(5)
+assert_exists(Template(r"../res/img/cmd_begin.png", threshold=0.9))
 
 # cmd1 = "set serverip 192.168.16.222; set ipaddr 192.168.16.157;"
 cmd1 = "set serverip {}; set ipaddr 192.168.1.157;".format(current_ip)
