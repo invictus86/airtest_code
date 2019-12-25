@@ -55,7 +55,7 @@ for _ in range(10):
     text("^c")
     sleep(1)
 
-with open(r"E:\ivan_code\test_code\bad_block\bad_block.txt") as f:
+with open(r"E:\ivan_code\test_code\auto_make_7414v_bad_block_file\bad_block.txt") as f:
     cmd_list = f.readlines()
 #     print(cmd_list)
 
