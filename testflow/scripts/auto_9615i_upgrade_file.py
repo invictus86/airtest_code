@@ -1,5 +1,6 @@
 import socket, time
 import ekt_rds, ekt_dta, ekt_file, ekt_net
+# from ektlib import ekt_rds, ekt_dta, ekt_file, ekt_net
 from airtest.core.api import *
 from airtest.cli.parser import cli_setup
 import json
@@ -125,22 +126,27 @@ def test_06_04_loader_osd():
     time.sleep(1)
     file_usb_before_enter_app('DEV003.CD5', wait_time=240)
 
-
+win32api.ShellExecute(0, 'open', r'D:\安装包\ATserver_contain_tsrate\ATServer.exe', '', '', 1)
+time.sleep(5)
 
 if not cli_setup():
     auto_setup(__file__, logdir=r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\log", devices=[
-        # "Windows:///?title_re=HiTool-Hi3716MV450*",
-        "Windows:///",
+        "Windows:///?title_re=ATServer*",
+        # "Windows:///",
     ]
                )
 
 # script content
 print("start...")
-# win32api.ShellExecute(0, 'open', r'D:\安装包\ATserver_contain_tsrate\ATServer.exe', '', '', 1)
+
 # time.sleep(1)
 # assert_exists(Template(r"../res/img/ATserver/atserver_ico.png", threshold=0.9))
 # time.sleep(1)
+touch(Template(r"../res/img/ATserver/atserver_connect.png", threshold=0.9))
 # double_click(Template(r"../res/img/ATserver/atserver_connect.png", threshold=0.9))
+time.sleep(20)
+assert_exists(Template(r"../res/img/ATserver/atserver_data_not_found.png", threshold=0.9))
+touch(Template(r"../res/img/ATserver/atserver_confirm.png"))
 
 clean_key()
 file_usb_before_enter_app('MANKEY.CD5', wait_time=60)
