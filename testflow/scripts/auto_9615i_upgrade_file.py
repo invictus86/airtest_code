@@ -1,5 +1,9 @@
 import socket, time
 import ekt_rds, ekt_dta, ekt_file, ekt_net
+from airtest.core.api import *
+from airtest.cli.parser import cli_setup
+import json
+import win32api
 
 
 def cope_file_to_new_path(old_file_path, new_file_path):
@@ -122,4 +126,20 @@ def test_06_04_loader_osd():
     file_usb_before_enter_app('DEV003.CD5', wait_time=240)
 
 
-test_06_04_loader_osd()
+
+if not cli_setup():
+    auto_setup(__file__, logdir=r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\log", devices=[
+        # "Windows:///?title_re=HiTool-Hi3716MV450*",
+        "Windows:///",
+    ]
+               )
+
+# script content
+print("start...")
+# win32api.ShellExecute(0, 'open', r'D:\安装包\ATserver_contain_tsrate\ATServer.exe', '', '', 1)
+# time.sleep(1)
+# assert_exists(Template(r"../res/img/ATserver/atserver_ico.png", threshold=0.9))
+# time.sleep(1)
+# double_click(Template(r"../res/img/ATserver/atserver_connect.png", threshold=0.9))
+
+clean_key()
