@@ -40,7 +40,8 @@ class EktFileCfg(object):
         cmd = 'DOC:CONFIG'
         paras = ''
         ret, data = self.net.send_ok(cmd, paras)
-        for str_data in data.split('#')[1:]:
+        # for str_data in data.split('#')[1:]:
+        for str_data in bytes.decode(data).split('#')[1:]:
             key_cfg, value_cfg = str_data.split('=')
             self.config[key_cfg] = value_cfg
         return ret

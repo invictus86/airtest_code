@@ -143,3 +143,6 @@ print("start...")
 # double_click(Template(r"../res/img/ATserver/atserver_connect.png", threshold=0.9))
 
 clean_key()
+file_usb_before_enter_app('MANKEY.CD5', wait_time=60)
+file_usb_before_enter_app('DEVKEY.KD5', wait_time=60)
+file_usb_before_enter_app('DEV003.CD5', wait_time=240)

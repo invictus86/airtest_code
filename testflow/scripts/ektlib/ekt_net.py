@@ -66,7 +66,8 @@ class EktNetClient(object):
     def __cmd_data(self, cmd, paras):
         data = ":" + cmd + " " + paras + "\r\n"
         try:
-            self.sock.sendall(data)
+            # self.sock.sendall(data)
+            self.sock.sendall(str.encode(data))
         except IOError as e:
             print('cannot send data ', e)
             # raise NetError(e)
@@ -86,7 +87,7 @@ class EktNetClient(object):
             if ret is None:
                 continue
 
-            if data in ret:
+            if str.encode(data) in ret:
                 # print "send cmd ok, send_data=%s, ret=%s" % (data, ret)
                 return True, ret
             else:
