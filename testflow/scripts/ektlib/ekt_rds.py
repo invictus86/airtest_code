@@ -4,7 +4,7 @@ import socket
 import string
 import time
 import string
-import ekt_net
+# import ekt_net
 
 
 class EktRds(object):

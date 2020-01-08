@@ -4,8 +4,8 @@ import socket
 import string
 import time
 import string
-import ekt_net
-import ekt_rds
+# import ekt_net
+# import ekt_rds
 
 
 class EktFileCfg(object):

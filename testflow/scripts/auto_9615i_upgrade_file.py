@@ -1,6 +1,10 @@
-import socket, time
-import ekt_rds, ekt_dta, ekt_file, ekt_net
-# from ektlib import ekt_rds, ekt_dta, ekt_file, ekt_net
+import socket, time, sys, os
+
+parentdir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, parentdir)
+
+# import ekt_rds, ekt_dta, ekt_file, ekt_net
+from ektlib import ekt_rds, ekt_dta, ekt_file, ekt_net
 from airtest.core.api import *
 from airtest.cli.parser import cli_setup
 import json
@@ -125,6 +129,7 @@ def test_06_04_loader_osd():
     file_usb_before_enter_app('DEVKEY.KD5', wait_time=60)
     time.sleep(1)
     file_usb_before_enter_app('DEV003.CD5', wait_time=240)
+
 
 win32api.ShellExecute(0, 'open', r'D:\安装包\ATserver_contain_tsrate\ATServer.exe', '', '', 1)
 time.sleep(5)
