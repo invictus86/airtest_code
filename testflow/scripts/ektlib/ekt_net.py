@@ -79,7 +79,7 @@ class EktNetClient(object):
         while (i > 0):
             try:
                 ret = self.rec_data()
-            except (socket.error, e):
+            except socket.error as e:
                 time.sleep(1)
                 ret = None
 

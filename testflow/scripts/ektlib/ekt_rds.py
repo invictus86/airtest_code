@@ -4,6 +4,7 @@ import socket
 import string
 import time
 import string
+from ektlib import ekt_net
 # import ekt_net
 
 
@@ -97,4 +98,4 @@ def _test_close_usb():
 
 
 if __name__ == '__main__':
-    _test_close_usb()
+    _test_RDS_ctl()

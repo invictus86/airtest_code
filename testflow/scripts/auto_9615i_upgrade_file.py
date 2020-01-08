@@ -52,6 +52,8 @@ def v5_usb_init(cd5_file):
     rds, doc, _ = v5_sys_init()
     src_file = doc.cd5_file(cd5_file)
     dst_file = doc.usb_file(doc.load_file)
+    print(src_file)
+    print(dst_file)
 
     rds.power_off()
     time.sleep(2)
@@ -144,14 +146,11 @@ if not cli_setup():
 # script content
 print("start...")
 
-# time.sleep(1)
-# assert_exists(Template(r"../res/img/ATserver/atserver_ico.png", threshold=0.9))
-# time.sleep(1)
-touch(Template(r"../res/img/ATserver/atserver_connect.png", threshold=0.9))
-# double_click(Template(r"../res/img/ATserver/atserver_connect.png", threshold=0.9))
-time.sleep(20)
-assert_exists(Template(r"../res/img/ATserver/atserver_data_not_found.png", threshold=0.9))
-touch(Template(r"../res/img/ATserver/atserver_confirm.png"))
+# touch(Template(r"../res/img/ATserver/atserver_connect.png", threshold=0.9))
+# # double_click(Template(r"../res/img/ATserver/atserver_connect.png", threshold=0.9))
+# time.sleep(20)
+# assert_exists(Template(r"../res/img/ATserver/atserver_data_not_found.png", threshold=0.9))
+# touch(Template(r"../res/img/ATserver/atserver_confirm.png"))
 
 clean_key()
 file_usb_before_enter_app('MANKEY.CD5', wait_time=60)
