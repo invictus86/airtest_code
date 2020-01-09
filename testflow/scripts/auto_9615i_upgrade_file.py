@@ -1,4 +1,5 @@
 import socket, time, sys, os
+import ctypes
 
 parentdir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, parentdir)
@@ -133,7 +134,16 @@ def test_06_04_loader_osd():
     file_usb_before_enter_app('DEV003.CD5', wait_time=240)
 
 
-win32api.ShellExecute(0, 'open', r'D:\安装包\ATserver_contain_tsrate\ATServer.exe', '', '', 1)
+if not cli_setup():
+    auto_setup(__file__, logdir=r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\log", devices=[
+        "Windows:///",
+    ]
+               )
+
+ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 6)
+
+double_click(Template(r"../res/img/ATserver/atserver_startup.png", threshold=0.9))
+# win32api.ShellExecute(0, 'open', r'D:\安装包\ATserver_contain_tsrate\ATServer.exe', '', '', 1)
 time.sleep(5)
 
 if not cli_setup():
@@ -146,13 +156,25 @@ if not cli_setup():
 # script content
 print("start...")
 
-# touch(Template(r"../res/img/ATserver/atserver_connect.png", threshold=0.9))
-# # double_click(Template(r"../res/img/ATserver/atserver_connect.png", threshold=0.9))
-# time.sleep(20)
-# assert_exists(Template(r"../res/img/ATserver/atserver_data_not_found.png", threshold=0.9))
-# touch(Template(r"../res/img/ATserver/atserver_confirm.png"))
+touch(Template(r"../res/img/ATserver/atserver_connect.png", threshold=0.9))
+# double_click(Template(r"../res/img/ATserver/atserver_connect.png", threshold=0.9))
+time.sleep(20)
+assert_exists(Template(r"../res/img/ATserver/atserver_data_not_found.png", threshold=0.9))
+touch(Template(r"../res/img/ATserver/atserver_confirm.png"))
+time.sleep(10)
 
 clean_key()
 file_usb_before_enter_app('MANKEY.CD5', wait_time=60)
 file_usb_before_enter_app('DEVKEY.KD5', wait_time=60)
 file_usb_before_enter_app('DEV003.CD5', wait_time=240)
+
+while True:
+    a = input("please input your choose:")
+    if a == "":
+        clean_key()
+        file_usb_before_enter_app('MANKEY.CD5', wait_time=60)
+        file_usb_before_enter_app('DEVKEY.KD5', wait_time=60)
+        file_usb_before_enter_app('DEV003.CD5', wait_time=240)
+    if a == "q" or a == "Q":
+        os.system("taskkill /F /IM ATServer.exe")
+        break

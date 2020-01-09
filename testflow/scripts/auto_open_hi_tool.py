@@ -5,6 +5,7 @@ from airtest.core.api import *
 from airtest.cli.parser import cli_setup
 import json
 import win32api
+import ctypes
 
 if not cli_setup():
     auto_setup(__file__, logdir=r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\log", devices=[
@@ -13,6 +14,7 @@ if not cli_setup():
     ]
                )
 
+ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 6)
 # script content
 print("start...")
 
