@@ -62,8 +62,6 @@ with open(r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\con
     print(str1)
     print(str2)
 
-# str1 = r"D:\9615\CH05101351_B7_signed_DSD9615iETL_BOOTLOADER_IMAGE_V5.1.6\CH05101351_B7_signed_DSD9615iETL_BOOTLOADER_IMAGE_V5.1.6\burn\spi_nand_partitions_irdeto.xml"
-# str2 = r"D:\9615\CH05101351_B7_signed_DSD9615iETL_BOOTLOADER_IMAGE_V5.1.6\CH05101351_B7_signed_DSD9615iETL_BOOTLOADER_IMAGE_V5.1.6\burn\advca_programmer.bin"
 time.sleep(3)
 xshell_import_cmd(str1)
 # time.sleep(3)

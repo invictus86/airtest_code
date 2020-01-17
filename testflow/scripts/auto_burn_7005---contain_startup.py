@@ -19,8 +19,7 @@ if not cli_setup():
 # script content
 print("start...")
 
-# ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 6)
-
+ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 6)
 
 
 double_click(Template(r"../res/img/ATserver/atserver_startup.png", threshold=0.9))
@@ -266,8 +265,7 @@ def auto_xshell_input():
 
 
 auto_xshell_input()
-# while True:
-#     pass
+ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 1)
 
 while True:
     a = input("please input your choose:")
@@ -277,5 +275,6 @@ while True:
         os.system("taskkill /F /IM ATServer.exe")
         os.system("taskkill /F /IM tftpd32.exe")
         os.system("taskkill /F /IM Xshell.exe")
-        os.system("taskkill /F /IM explorer.exe")
+        # os.system("taskkill /F /IM explorer.exe")
+        ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 1)
         break
