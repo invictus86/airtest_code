@@ -10,6 +10,7 @@ from airtest.core.api import *
 from airtest.cli.parser import cli_setup
 import json
 import win32api
+import file_operate
 
 
 def cope_file_to_new_path(old_file_path, new_file_path):
@@ -50,9 +51,9 @@ def v5_usb_init(cd5_file):
     :param cd5_file: str,the CD5 file name
     :return: rds,EktRds instance
     """
-    rds, doc, _ = v5_sys_init()
-    src_file = doc.cd5_file(cd5_file)
-    dst_file = doc.usb_file(doc.load_file)
+    rds, _, _ = v5_sys_init()
+    src_file = r"D:\9615\burn_file\unsigned_application_file\{}".format(cd5_file)
+    dst_file = r"F:\IRDETO_0238_0033.CD5"
     print(src_file)
     print(dst_file)
 
@@ -60,7 +61,7 @@ def v5_usb_init(cd5_file):
     time.sleep(2)
     rds.usb_switch_pc()
     time.sleep(8)
-    doc.copy_file(src_file, dst_file)
+    file_operate.cope_file_src_dst(src_file, dst_file)
     time.sleep(6)
     rds.power_on()
     time.sleep(1)
@@ -88,21 +89,21 @@ def clean_key():
     upgrade EKCleanSPCBKey.CD5 set the STB to default value.
     :return: None
     """
-    rds, doc, _ = v5_sys_init()
+    rds, _, _ = v5_sys_init()
     rds.power_off()
     time.sleep(1)
     rds.power_on()
     time.sleep(3)
-    src_file = doc.cd5_file(doc.clean_file)
+    src_file = r"D:\9615\burn_file\unsigned_application_file\EKCleanSPCBKey.CD5"
     print(src_file)
-    dst_file = doc.usb_file(doc.clean_file)
+    dst_file = r"F:\EKCleanSPCBKey.CD5"
     print(dst_file)
-    del_file = doc.usb_file(doc.load_file)
+    del_file = r"F:\IRDETO_0238_0033.CD5"
     rds.usb_switch_pc()
     time.sleep(8)
-    doc.del_file(del_file)
+    file_operate.remove_file(del_file)
     time.sleep(5)
-    doc.copy_file(src_file, dst_file)
+    file_operate.cope_file_src_dst(src_file, dst_file)
     time.sleep(6)
     rds.power_off()
     time.sleep(1)
@@ -111,12 +112,11 @@ def clean_key():
     rds.usb_switch_stb()
     time.sleep(10)
     try:
-        # wait_for_text_match("Clean Key", 60)
         time.sleep(10)
     finally:
         rds.usb_switch_pc()
         time.sleep(5)
-        doc.del_file(dst_file)
+        file_operate.remove_file(dst_file)
         rds.usb_switch_none()
         time.sleep(10)
 
@@ -167,6 +167,7 @@ clean_key()
 file_usb_before_enter_app('MANKEY.CD5', wait_time=60)
 file_usb_before_enter_app('DEVKEY.KD5', wait_time=60)
 file_usb_before_enter_app('DEV003.CD5', wait_time=240)
+os.system("taskkill /F /IM ATServer.exe")
 
 while True:
     a = input("please input your choose:")
