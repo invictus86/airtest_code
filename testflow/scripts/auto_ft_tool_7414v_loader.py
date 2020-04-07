@@ -32,7 +32,7 @@ def xshell_import_cmd(cmd):
 print("start...")
 
 double_click(Template(r"../res/img/open_ft_tool.png", threshold=0.7))
-time.sleep(3)
+time.sleep(1)
 assert_exists(Template(r"../res/img/ft_tool_v4_0_1.png"))
 assert_exists(Template(r"../res/img/burn_check_partitions.png"))
 swipe(Template(r"../res/img/ft_tool_begin.png"), Template(r"../res/img/ft_tool_end.png"), vector=[0.0016, 0.0056])
