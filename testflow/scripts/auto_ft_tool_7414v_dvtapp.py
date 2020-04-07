@@ -11,7 +11,17 @@ from airtest.cli.parser import cli_setup
 import json
 import win32api
 import file_operate
+import logging
 
+
+logging.basicConfig(level=logging.INFO,  # 控制台打印的日志级别
+                    filename='auto_burn.log',
+                    filemode='a',  ##模式，有w和a，w就是写模式，每次都会重新写日志，覆盖之前的日志
+                    # a是追加模式，默认如果不写的话，就是追加模式
+                    format=
+                    '%(asctime)s - %(pathname)s[line:%(lineno)d] - %(levelname)s: %(message)s'
+                    # 日志格式
+                    )
 
 def get_local_ip():
     """
@@ -23,6 +33,7 @@ def get_local_ip():
         if str(item[-1][0])[0:3] == "192":
             ip = str(item[-1][0])
             print("current ip is : {}".format(ip))
+            logging.info("current ip is : {}".format(ip))
     return ip
 
 
@@ -49,17 +60,24 @@ def v5_usb_init():
     src_file = r"D:\7414\burn_file\1000\1000\UpgradeFile.bin"
     dst_file = r"F:\UpgradeFile.bin"
     print(src_file)
+    logging.info(src_file)
     print(dst_file)
+    logging.info(dst_file)
 
     rds.power_off()
+    logging.info("rds.power_off()")
     time.sleep(2)
     rds.usb_switch_pc()
+    logging.info("rds.usb_switch_pc()")
     time.sleep(8)
     file_operate.cope_file_src_dst(src_file, dst_file)
+    logging.info("file_operate.cope_file_src_dst(src_file, dst_file)")
     time.sleep(6)
     rds.power_on()
+    logging.info("rds.power_on()")
     time.sleep(1)
     rds.usb_switch_stb()
+    logging.info("rds.usb_switch_stb()")
     return rds
 
 
@@ -75,6 +93,7 @@ def file_usb_before_enter_app(wait_time=0):
     rds = v5_usb_init()
     time.sleep(wait_time)
     rds.usb_switch_none()
+    logging.info("rds.usb_switch_none()")
     return rds
 
 

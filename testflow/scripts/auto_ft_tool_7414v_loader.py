@@ -5,6 +5,16 @@ from airtest.core.api import *
 from airtest.cli.parser import cli_setup
 import win32api, json
 import ctypes
+import logging
+
+logging.basicConfig(level=logging.INFO,  # 控制台打印的日志级别
+                    filename='auto_burn.log',
+                    filemode='a',  ##模式，有w和a，w就是写模式，每次都会重新写日志，覆盖之前的日志
+                    # a是追加模式，默认如果不写的话，就是追加模式
+                    format=
+                    '%(asctime)s - %(pathname)s[line:%(lineno)d] - %(levelname)s: %(message)s'
+                    # 日志格式
+                    )
 
 if not cli_setup():
     auto_setup(__file__, logdir=r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\log", devices=[
@@ -22,6 +32,7 @@ def xshell_import_cmd(cmd):
     sleep(0.5)
     for single_cmd in list_single_cmd:
         print(single_cmd)
+        logging.info(single_cmd)
         text(single_cmd)
         keyevent("{SPACE}")
     keyevent("{ENTER}")
@@ -30,6 +41,7 @@ def xshell_import_cmd(cmd):
 
 # script content
 print("start...")
+
 
 double_click(Template(r"../res/img/open_ft_tool.png", threshold=0.7))
 time.sleep(1)
@@ -44,6 +56,7 @@ with open(r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\con
     # print(load_dict)
     str3 = load_dict.get("data3")
     print(str3)
+    logging.info(str3)
 
 time.sleep(3)
 xshell_import_cmd(str3)
