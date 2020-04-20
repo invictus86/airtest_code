@@ -2,5 +2,7 @@
 "data2": "D:\\9615\\CH05101351-B8 DSD9615iETL SIGNED LOADER IMAGE V5.1.8\\burn\\advca_programmer.bin",
 "data3": "D:\\7414\\CH05101358_B6_DSN7414v_BOOT_V1.5.0_LOADER_V1.04_IMAGE_MarketID_0x0100031D\\burn_flash_windowtool\\ALI_nofuse.ini",
 "data4": "D:\\9615\\DXD9615i\\burn\\spi_nand_partitions_irdeto.xml",
-"data5": "D:\\9615\\DXD9615i\\burn\\advca_programmer.bin"
+"data5": "D:\\9615\\DXD9615i\\burn\\advca_programmer.bin",
+  "dsn7514i_stream_file": "D:\\7514\\CH05101260-B8 DSN7514iCS_signed_LOADER IMAGE V5.1.10\\burnFlash\\flashwr_c3702.abs",
+  "dsn7514i_download_file": "D:\\7514\\CH05101260-B8 DSN7514iCS_signed_LOADER IMAGE V5.1.10\\burnFlash\\s3702_sf_burn_sabbat_signed_bootloader.ini"
 }
