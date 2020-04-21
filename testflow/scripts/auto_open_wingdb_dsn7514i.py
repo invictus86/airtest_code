@@ -100,6 +100,9 @@ time.sleep(0.5)
 touch(Template(r"../res/img/wingdb/wingdb_go.png"))
 logging.info('touch(Template(r"../res/img/wingdb/wingdb_go.png"))')
 time.sleep(30)
-assert_exists(Template(r"../res/img/wingdb/wingdb_burn_success.png", threshold=0.9))
+try:
+    assert_exists(Template(r"../res/img/wingdb/wingdb_burn_success.png", threshold=0.9))
+except:
+    assert_exists(Template(r"../res/img/wingdb/wingdb_burn_success.png", threshold=0.9))
 logging.info('assert_exists(Template(r"../res/img/wingdb/wingdb_burn_success.png", threshold=0.9))')
 os.system("taskkill /F /IM WinGDB_v1.4.0.exe")
