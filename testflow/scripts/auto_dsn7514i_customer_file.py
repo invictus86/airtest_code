@@ -11,7 +11,9 @@ from airtest.cli.parser import cli_setup
 import json
 import win32api
 import file_operate
+from airtest.core.settings import Settings
 
+Settings.FIND_TIMEOUT = 30
 
 def cope_file_to_new_path(old_file_path, new_file_path):
     with open(old_file_path, "rb") as f1, open(new_file_path, "wb") as f2:
@@ -53,7 +55,7 @@ def v5_usb_init(cd5_file):
     """
     rds, _, _ = v5_sys_init()
     src_file = r"D:\7514\burn_file\current_burn_file\{}".format(cd5_file)
-    dst_file = r"F:\Irdeto_0238_0030.CD5"
+    dst_file = r"F:\Irdeto_0238_0031.CD5"
     print(src_file)
     print(dst_file)
 
@@ -98,7 +100,7 @@ def clean_key():
     print(src_file)
     dst_file = r"F:\EKCleanSPCBKey.CD5"
     print(dst_file)
-    del_file = r"F:\Irdeto_0238_0030.CD5"
+    del_file = r"F:\Irdeto_0238_0031.CD5"
     rds.usb_switch_pc()
     time.sleep(8)
     file_operate.remove_file(del_file)
