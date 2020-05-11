@@ -33,9 +33,12 @@ if not cli_setup():
 
 touch(Template(r"../res/img/ATserver/atserver_connect.png", threshold=0.9))
 time.sleep(20)
-assert_exists(Template(r"../res/img/ATserver/atserver_data_not_found.png", threshold=0.9))
-touch(Template(r"../res/img/ATserver/atserver_confirm.png"))
-time.sleep(5)
+try:
+    assert_exists(Template(r"../res/img/ATserver/atserver_data_not_found.png", threshold=0.9))
+    touch(Template(r"../res/img/ATserver/atserver_confirm.png"))
+except:
+    assert_exists(Template(r"../res/img/ATserver/atserver_connect.png", threshold=0.9))
+time.sleep(3)
 
 os.system(
     r'explorer.exe /n, D:\9215v\SSI.dsd9215v_master.2020.05.05.11\SSI.dsd9215v_master.2020.05.05.11\SSI.dsd9215v_master.2020.05.05.11')
@@ -182,8 +185,10 @@ def auto_xshell_input():
     cmd40 = "tftp fdt.dtbo;nand erase fdt;nand write ${loadaddr} fdt 0x100000"
     cmd41 = "res"
 
-
-    list_cmd1 = [cmd1, cmd2, cmd3, cmd4, cmd5, cmd6, cmd7, cmd8, cmd9, cmd10, cmd11, cmd12, cmd13, cmd14, cmd15,
+    xshell_import_cmd([cmd1])
+    time.sleep(3)
+    keyevent("{ENTER}")
+    list_cmd1 = [cmd2, cmd3, cmd4, cmd5, cmd6, cmd7, cmd8, cmd9, cmd10, cmd11, cmd12, cmd13, cmd14, cmd15,
                  cmd16, cmd17, cmd18, cmd19, cmd20, cmd21, cmd22, cmd23, cmd24, cmd25, cmd26, cmd27, cmd28, cmd29,
                  cmd30, cmd31, cmd32, cmd33, cmd34]
 
