@@ -5,6 +5,7 @@ from airtest.core.api import *
 from airtest.cli.parser import cli_setup
 import json
 import win32api
+import ctypes
 import logging
 from airtest.core.settings import Settings
 
@@ -26,7 +27,7 @@ if not cli_setup():
     ]
                )
 
-# ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 6)
+ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 6)
 # script content
 print("start...")
 
@@ -91,11 +92,11 @@ time.sleep(0.5)
 xshell_import_cmd(dsn7514i_download_file)
 logging.info('xshell_import_cmd(dsn7514i_download_file)')
 time.sleep(10)
-assert_exists(Template(r"../res/img/wingdb/wingdb_download_success.png", threshold=0.9))
-logging.info('assert_exists(Template(r"../res/img/wingdb/wingdb_download_success.png", threshold=0.9))')
 touch(Template(r"../res/img/wingdb/wingdb_mst_output.png"))
 logging.info('touch(Template(r"../res/img/wingdb/wingdb_mst_output.png"))')
 time.sleep(0.5)
+assert_exists(Template(r"../res/img/wingdb/wingdb_download_success.png", threshold=0.9))
+logging.info('assert_exists(Template(r"../res/img/wingdb/wingdb_download_success.png", threshold=0.9))')
 touch(Template(r"../res/img/wingdb/wingdb_ice.png"))
 logging.info('touch(Template(r"../res/img/wingdb/wingdb_ice.png"))')
 time.sleep(0.5)

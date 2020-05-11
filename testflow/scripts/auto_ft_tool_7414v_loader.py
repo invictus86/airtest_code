@@ -78,6 +78,7 @@ time.sleep(3)
 while True:
     a = input("please input your choose:")
     if a == "":
+        ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 6)
         touch(Template(r"../res/img/clear_message.png"))
         # time.sleep(0.5)
         touch(Template(r"../res/img/set_device.png"))

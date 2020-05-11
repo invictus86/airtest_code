@@ -49,7 +49,8 @@ except:
     pass
 
 time.sleep(3)
-assert_exists(Template(r"../res/img/hitool_hi3716mv450.png", threshold=0.9))
+# assert_exists(Template(r"../res/img/hitool_hi3716mv450.png", threshold=0.9))
+# swipe(Template(r"../res/img/hitool/hitool_mian_begin.png"), Template(r"../res/img/hitool/hitool_mian_end.png"))
 touch(Template(r"../res/img/jtag_network.png"))
 time.sleep(1)
 touch(Template(r"../res/img/view.png"))
@@ -258,11 +259,15 @@ if not cli_setup():
 print("start...")
 
 touch(Template(r"../res/img/ATserver/atserver_connect.png", threshold=0.9))
-# double_click(Template(r"../res/img/ATserver/atserver_connect.png", threshold=0.9))
-time.sleep(20)
-assert_exists(Template(r"../res/img/ATserver/atserver_data_not_found.png", threshold=0.9))
-touch(Template(r"../res/img/ATserver/atserver_confirm.png"))
-time.sleep(10)
+time.sleep(5)
+try:
+    assert_exists(Template(r"../res/img/ATserver/atserver_connect_success.png", threshold=0.9))
+except:
+    # time.sleep(15)
+    assert_exists(Template(r"../res/img/ATserver/atserver_data_not_found.png", threshold=0.9))
+    touch(Template(r"../res/img/ATserver/atserver_confirm.png"))
+
+time.sleep(3)
 
 clean_key()
 file_usb_before_enter_app('MANKEY.CD5', wait_time=60)

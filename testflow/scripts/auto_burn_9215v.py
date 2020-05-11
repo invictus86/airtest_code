@@ -32,12 +32,14 @@ if not cli_setup():
                )
 
 touch(Template(r"../res/img/ATserver/atserver_connect.png", threshold=0.9))
-time.sleep(20)
+time.sleep(5)
 try:
+    assert_exists(Template(r"../res/img/ATserver/atserver_connect_success.png", threshold=0.9))
+except:
+    # time.sleep(15)
     assert_exists(Template(r"../res/img/ATserver/atserver_data_not_found.png", threshold=0.9))
     touch(Template(r"../res/img/ATserver/atserver_confirm.png"))
-except:
-    assert_exists(Template(r"../res/img/ATserver/atserver_connect.png", threshold=0.9))
+
 time.sleep(3)
 
 os.system(

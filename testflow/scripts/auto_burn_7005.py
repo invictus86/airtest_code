@@ -34,9 +34,12 @@ if not cli_setup():
 
 touch(Template(r"../res/img/ATserver/atserver_connect.png", threshold=0.9))
 time.sleep(20)
-assert_exists(Template(r"../res/img/ATserver/atserver_data_not_found.png", threshold=0.9))
-touch(Template(r"../res/img/ATserver/atserver_confirm.png"))
-time.sleep(5)
+try:
+    assert_exists(Template(r"../res/img/ATserver/atserver_data_not_found.png", threshold=0.9))
+    touch(Template(r"../res/img/ATserver/atserver_confirm.png"))
+except:
+    assert_exists(Template(r"../res/img/ATserver/atserver_connect.png", threshold=0.9))
+time.sleep(3)
 
 os.system(r'explorer.exe /n, D:\flash_samples_7005\Flash samples')
 time.sleep(1)
