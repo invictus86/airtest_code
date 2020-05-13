@@ -228,6 +228,7 @@ while True:
     a = input("please input your choose:")
     if a == "":
         auto_xshell_input()
+        ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 1)
     if a == "q" or a == "Q":
         os.system("taskkill /F /IM ATServer.exe")
         os.system("taskkill /F /IM tftpd32.exe")
