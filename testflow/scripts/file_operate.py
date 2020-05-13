@@ -23,6 +23,15 @@ def cope_file_src_dst(src_file, dst_file):
     """
     shutil.copy2(src_file, dst_file)
 
+def cope_floder_src_dst(src_file, dst_file):
+    """
+    从源目录复制文件夹到指定目录
+    :param src_file: 源文件
+    :param dst_file: 指定目录文件
+    :return:
+    """
+    shutil.copytree(src_file, dst_file)
+
 
 def serach_man_file(path_file):
     """

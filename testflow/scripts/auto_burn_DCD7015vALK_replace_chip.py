@@ -178,6 +178,11 @@ def auto_xshell_input():
     cmd6 = "tftp {}:boot_logo.bin;".format(current_ip)
     cmd7 = "nor write 0x80007fc0 0x00240000 0x20000;"
 
+    cmd103 = "nor write 0x80007fc0 0 0x240000"
+    cmd104 = "tftp 0x80007fc0 ID_0x02fd0100_s_ekt.bin;"
+    cmd105 = "nor write 0x80007fc0 0x240000 0x20000"
+    cmd106 = "otp write 370 04000000 8"
+    cmd107 = "otp write c 02000000 8"
 
     cmd8 = "tftp {}:deviceinfo.abs".format(current_ip)
     cmd9 = "nand erase deviceinfo 0x00080000"
@@ -232,6 +237,22 @@ def auto_xshell_input():
     xshell_import_cmd([cmd7])
     assert_exists(Template(r"../res/img/DCD7015v/cmd20_success.png", threshold=0.9))
     time.sleep(1)
+
+    xshell_import_cmd([cmd103])
+    time.sleep(15)
+    assert_exists(Template(r"../res/img/cmd103_success.png", threshold=0.9))
+    xshell_import_cmd([cmd104])
+    time.sleep(1)
+    assert_exists(Template(r"../res/img/cmd104_success.png", threshold=0.9))
+    xshell_import_cmd([cmd105])
+    time.sleep(1)
+    assert_exists(Template(r"../res/img/cmd105_success.png", threshold=0.9))
+    xshell_import_cmd([cmd106])
+    time.sleep(2)
+    assert_exists(Template(r"../res/img/cmd106_success.png", threshold=0.9))
+    xshell_import_cmd([cmd107])
+    time.sleep(2)
+    assert_exists(Template(r"../res/img/cmd107_success.png", threshold=0.9))
 
     power_off()
     sleep(3)
