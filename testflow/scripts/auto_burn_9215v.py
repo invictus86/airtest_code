@@ -84,6 +84,22 @@ PORT = 8900
 BUFSIZ = 4096
 ADDR = (HOST, PORT)
 
+net = ekt_net.EktNetClient(current_ip, 8900)
+rds = ekt_rds.EktRds(net)
+rds.usb_switch_pc()
+time.sleep(5)
+filepath = "F:"
+file_operate.del_all_file(filepath)
+file_operate.cope_file_src_dst(r"D:\9215v\dsd9215_fuse\fastboot.bin",
+                               r"F:fastboot.bin")
+file_operate.cope_file_src_dst(r"D:\9215v\dsd9215_fuse\pv_cfg_dbg_vmx_production.txt", r"F:pv_cfg_dbg_vmx_production.txt")
+file_operate.cope_file_src_dst(r"D:\9215v\dsd9215_fuse\sample_product_pv_stb", r"F:sample_product_pv_stb")
+
+time.sleep(3)
+rds.usb_switch_stb()
+time.sleep(2)
+del rds
+del net
 
 def power_on():
     tcpCliSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -187,6 +203,11 @@ def auto_xshell_input():
     cmd40 = "tftp fdt.dtbo;nand erase fdt;nand write ${loadaddr} fdt 0x100000"
     cmd41 = "res"
 
+    cmd42 = "./mnt/hdd_1/sample_product_pv_stb ./mnt/hdd_1/pv_cfg_dbg_vmx_production.txt"
+    cmd43 = "1"
+    cmd44 = "flash_eraseall /dev/mtd/fastboot"
+    cmd45 = "dd if=/mnt/hdd_1/fastboot.bin of=/dev/mtd/fastboot"
+
     xshell_import_cmd([cmd1])
     time.sleep(3)
     keyevent("{ENTER}")
@@ -218,6 +239,14 @@ def auto_xshell_input():
     xshell_import_cmd([cmd41])
     time.sleep(25)
     assert_exists(Template(r"../res/img/9215v_xshell/burn_ssi_success.png", threshold=0.9))
+    xshell_import_cmd([cmd42])
+    time.sleep(5)
+    xshell_import_cmd([cmd43])
+    time.sleep(5)
+    xshell_import_cmd([cmd44])
+    time.sleep(5)
+    xshell_import_cmd([cmd45])
+    time.sleep(5)
 
 
 

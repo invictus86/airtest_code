@@ -87,7 +87,7 @@ ADDR = (HOST, PORT)
 net = ekt_net.EktNetClient(current_ip, 8900)
 rds = ekt_rds.EktRds(net)
 rds.usb_switch_pc()
-time.sleep(3)
+time.sleep(5)
 filepath = "F:"
 file_operate.del_all_file(filepath)
 file_operate.cope_file_src_dst(r"D:\flash_samples_7005\Flash samples\u\fuse_tool_vmx_1.05_read",
