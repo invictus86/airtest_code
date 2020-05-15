@@ -90,14 +90,16 @@ file_operate.cope_file_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005\all_fus
                                r"F:fuse_tool_vmx_v1.3")
 file_operate.cope_floder_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005\images", r"F:images")
 
-file_operate.cope_file_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005\loader\bootenv.ubo", r"F:bootenv.ubo")
-file_operate.cope_file_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005\loader\deviceinfo.abs", r"F:deviceinfo.abs")
-file_operate.cope_file_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005\loader\erase_loader_data.bin", r"F:erase_loader_data.bin")
-file_operate.cope_file_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005\loader\fsi.bin", r"F:fsi.bin")
-file_operate.cope_file_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005\loader\product_sabbat_dual.abs", r"F:product_sabbat_dual.abs")
-file_operate.cope_file_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005\loader\see_bin.ubo", r"F:see_bin.ubo")
-file_operate.cope_file_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005\loader\vmlinux_signed_loader.bin",
-                               r"F:vmlinux_signed_loader.bin")
+file_operate.cope_floder_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005\loader", r"F:loader")
+
+# file_operate.cope_file_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005\loader\bootenv.ubo", r"F:bootenv.ubo")
+# file_operate.cope_file_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005\loader\deviceinfo.abs", r"F:deviceinfo.abs")
+# file_operate.cope_file_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005\loader\erase_loader_data.bin", r"F:erase_loader_data.bin")
+# file_operate.cope_file_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005\loader\fsi.bin", r"F:fsi.bin")
+# file_operate.cope_file_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005\loader\product_sabbat_dual.abs", r"F:product_sabbat_dual.abs")
+# file_operate.cope_file_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005\loader\see_bin.ubo", r"F:see_bin.ubo")
+# file_operate.cope_file_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005\loader\vmlinux_signed_loader.bin",
+#                                r"F:vmlinux_signed_loader.bin")
 
 time.sleep(3)
 rds.usb_switch_stb()
@@ -208,8 +210,8 @@ def auto_xshell_input():
 
     cmd24 = "flash_eraseall /dev/mtd/nor_boot"
     cmd25 = "dd if=/mnt/hdd_1/loader/product_sabbat_dual.abs of=/dev/mtd/nor_boot"
-    cmd26 = "flash_eraseall /dev/mtd/nor_nev"
-    cmd27 = "dd if=/mnt/hdd_1/loader/bootenv.ubo of=/dev/mtd/nor_nev"
+    cmd26 = "flash_eraseall /dev/mtd/nor_env"
+    cmd27 = "dd if=/mnt/hdd_1/loader/bootenv.ubo of=/dev/mtd/nor_env"
     cmd28 = "flash_eraseall /dev/mtd/upg_rootfs"
     cmd29 = "nandwrite /dev/mtd/upg_rootfs -p /mnt/hdd_1/loader/fsi.bin"
     cmd30 = "flash_eraseall /dev/mtd/upg_kernel"
@@ -330,31 +332,31 @@ def auto_xshell_input():
     xshell_import_cmd([cmd24])
     time.sleep(10)
     xshell_import_cmd([cmd25])
-    time.sleep(10)
+    time.sleep(25)
     xshell_import_cmd([cmd26])
-    time.sleep(10)
+    time.sleep(3)
     xshell_import_cmd([cmd27])
-    time.sleep(10)
+    time.sleep(5)
     xshell_import_cmd([cmd28])
-    time.sleep(10)
+    time.sleep(3)
     xshell_import_cmd([cmd29])
-    time.sleep(10)
+    time.sleep(8)
     xshell_import_cmd([cmd30])
-    time.sleep(10)
+    time.sleep(3)
     xshell_import_cmd([cmd31])
-    time.sleep(10)
+    time.sleep(8)
     xshell_import_cmd([cmd32])
-    time.sleep(10)
+    time.sleep(3)
     xshell_import_cmd([cmd33])
-    time.sleep(10)
+    time.sleep(5)
     xshell_import_cmd([cmd34])
-    time.sleep(10)
+    time.sleep(3)
     xshell_import_cmd([cmd35])
-    time.sleep(10)
+    time.sleep(3)
     xshell_import_cmd([cmd36])
-    time.sleep(10)
+    time.sleep(5)
     xshell_import_cmd([cmd37])
-    time.sleep(10)
+    time.sleep(5)
 
     power_off()
     sleep(3)
