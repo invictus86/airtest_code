@@ -74,8 +74,12 @@ touch(Template(r"../res/img/burn.png", threshold=0.7))
 time.sleep(3)
 touch(Template(r"../res/img/console.png", threshold=0.7))
 
-time.sleep(80)
-assert_exists(Template(r"../res/img/burn_success.png", threshold=0.9))
+time.sleep(95)
+try:
+    assert_exists(Template(r"../res/img/burn_success.png", threshold=0.9))
+except:
+    assert_exists(Template(r"../res/img/burn_success.png", threshold=0.9))
+
 try:
     assert_exists(Template(r"../res/img/burn_success_confirm.png", threshold=0.9))
     touch(Template(r"../res/img/burn_success_confirm.png", threshold=0.9))
