@@ -163,12 +163,15 @@ def auto_xshell_input():
     sleep(5)
 
 
-    for _ in range(5):
+    for _ in range(10):
         text("A2tmGHgGjYgV1MN4")
         keyevent("{ENTER}")
         sleep(1)
     time.sleep(5)
     assert_exists(Template(r"../res/img/DCD7015v/boot_cmd.png", threshold=0.9))
+    keyevent("{ENTER}")
+    time.sleep(1)
+    keyevent("{ENTER}")
 
     # cmd1 = "set serverip 192.168.16.222; set ipaddr 192.168.16.157;"
 
@@ -277,7 +280,7 @@ def auto_xshell_input():
     time.sleep(20)
     assert_exists(Template(r"../res/img/DCD7015v/cmd20_success.png", threshold=0.9))
     xshell_import_cmd([cmd14])
-    time.sleep(36)
+    time.sleep(26)
     assert_exists(Template(r"../res/img/DCD7015v/cmd20_success.png", threshold=0.9))
     xshell_import_cmd([cmd15])
     assert_exists(Template(r"../res/img/DCD7015v/cmd20_success.png", threshold=0.9))
