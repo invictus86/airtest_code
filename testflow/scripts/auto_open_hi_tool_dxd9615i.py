@@ -210,6 +210,8 @@ def clean_key():
     rds.usb_switch_pc()
     time.sleep(8)
     file_operate.remove_file(del_file)
+    filepath = "F:"
+    file_operate.del_all_file(filepath)
     time.sleep(5)
     file_operate.cope_file_src_dst(src_file, dst_file)
     time.sleep(6)
@@ -234,8 +236,6 @@ def test_06_04_loader_osd():
     upgrade 'MANKEY.CD5','DEVKEY.KD5','DEV003.CD5',after upgrade STB can enter DVTAPP or an exception will be raised
     :return:None
     """
-    filepath = "F:"
-    file_operate.del_all_file(filepath)
     clean_key()
     rds = file_usb_before_enter_app('MANKEY.CD5', wait_time=60)
     time.sleep(1)
