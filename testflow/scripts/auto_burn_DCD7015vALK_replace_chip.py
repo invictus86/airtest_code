@@ -230,6 +230,7 @@ def auto_xshell_input():
     time.sleep(1)
     xshell_import_cmd([cmd2])
     assert_exists(Template(r"../res/img/DCD7015v/cmd20_success.png", threshold=0.9))
+    time.sleep(5)
     xshell_import_cmd([cmd3])
     time.sleep(10)
     assert_exists(Template(r"../res/img/DCD7015v/cmd20_success.png", threshold=0.9))
@@ -264,6 +265,9 @@ def auto_xshell_input():
     power_on()
     sleep(20)
     assert_exists(Template(r"../res/img/DCD7015v/cmd20_success.png", threshold=0.9))
+
+    xshell_import_cmd(["set ipaddr 192.168.2.142"])
+    time.sleep(3)
     xshell_import_cmd([cmd8])
     assert_exists(Template(r"../res/img/DCD7015v/cmd20_success.png", threshold=0.9))
     xshell_import_cmd([cmd9])
