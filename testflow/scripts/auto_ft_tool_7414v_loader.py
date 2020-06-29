@@ -61,6 +61,8 @@ with open(r"C:\Users\susan.yuan.EKT1\PycharmProjects\airtest_code\testflow\scrip
 time.sleep(3)
 xshell_import_cmd(str3)
 
+
+
 touch(Template(r"../res/img/clear_message.png"))
 # time.sleep(0.5)
 touch(Template(r"../res/img/set_device.png"))
