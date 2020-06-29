@@ -17,7 +17,7 @@ logging.basicConfig(level=logging.INFO,  # 控制台打印的日志级别
                     )
 
 if not cli_setup():
-    auto_setup(__file__, logdir=r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\log", devices=[
+    auto_setup(__file__, logdir=r"C:\Users\susan.yuan.EKT1\PycharmProjects\airtest_code\testflow\scripts\log", devices=[
         "Windows:///",
     ]
                )
@@ -51,7 +51,7 @@ swipe(Template(r"../res/img/ft_tool_begin.png"), Template(r"../res/img/ft_tool_e
 time.sleep(1)
 touch(Template(r"../res/img/ft_tool_open.png"))
 
-with open(r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\config.json", 'r') as load_f:
+with open(r"C:\Users\susan.yuan.EKT1\PycharmProjects\airtest_code\testflow\scripts\config.json", 'r') as load_f:
     load_dict = json.load(load_f)
     # print(load_dict)
     str3 = load_dict.get("data3")
