@@ -10,6 +10,8 @@ if not cli_setup():
     ]
                )
 
+
+
 # script content
 print("start...")
 
