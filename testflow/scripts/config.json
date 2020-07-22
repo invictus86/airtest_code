@@ -14,5 +14,5 @@
   "dsn5414a_browse_file": "D:\\auto_burn_module\\DSN5414a\\CH05101439-A1_DSN5454a_FTA_APPLICATION_SOFTWARE_IMAGE\\loader\\FullImage.bin",
   "dsn5414a_browse_file_experimental": "D:\\auto_burn_module\\DSN5414a_experimental_build\\bootloader_fordebug_2\\bootloader.bin",
   "dsn7714i_sdram_file": "D:\\auto_burn_module\\DSN7714i\\WinGDB\\DDR_init\\C3507_QFP128_DDR3_256MB_1600MHZ.abs",
-  "dsn7714i_download_file": "D:\\auto_burn_module\\DCN7414g\\Loader_for_DCN7414g\\s3505_sf_burn_sabbat_8m.ini"
+  "dsn7714i_download_file": "D:\\auto_burn_module\\DSN7714i\\SSISQItest_DSN7714i_202007211758\\s3507_sf_burn_sabbat_16m.ini"
 }
