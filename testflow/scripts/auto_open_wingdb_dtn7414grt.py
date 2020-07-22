@@ -56,6 +56,7 @@ with open(r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\con
 win32api.ShellExecute(0, 'open', r'D:\auto_burn_module\DCN7414g\Loader_for_DCN7414g\WinGDB_v1.3.0\WinGDB_v1.3.0.exe', '', '', 1)
 # assert_exists(Template(r"../res/img/wingdb/wingdb_ico.png", threshold=0.9))
 # logging.info('assert_exists(Template(r"../res/img/wingdb/wingdb_ico.png", threshold=0.9))')
+time.sleep(3)
 touch(Template(r"../res/img/wingdb/wingdb_ice.png"))
 logging.info('touch(Template(r"../res/img/wingdb/wingdb_ice.png"))')
 time.sleep(0.5)
