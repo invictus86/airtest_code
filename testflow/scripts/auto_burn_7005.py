@@ -250,7 +250,7 @@ def auto_xshell_input():
     xshell_import_cmd([cmd17])
     assert_exists(Template(r"../res/img/cmd17_success.png", threshold=0.9))
     xshell_import_cmd([cmd18])
-    time.sleep(40)
+    time.sleep(60)
     assert_exists(Template(r"../res/img/cmd18_success.png", threshold=0.9))
     xshell_import_cmd([cmd19])
     time.sleep(15)
