@@ -156,11 +156,11 @@ def auto_xshell_input():
     power_on()
     sleep(5)
 
-    for _ in range(5):
-        keyevent("{ENTER}")
-        sleep(1)
-    time.sleep(5)
-    assert_exists(Template(r"../res/img/ali_arm.png", threshold=0.9))
+    # for _ in range(5):
+    #     keyevent("{ENTER}")
+    #     sleep(1)
+    # time.sleep(5)
+    # assert_exists(Template(r"../res/img/ali_arm.png", threshold=0.9))
 
     # cmd101 = "set serverip {}; set ipaddr 192.168.1.157;".format(current_ip)
     # cmd102 = "tftp 0x80007fc0 product_sabbat_dual.abs;"
@@ -196,12 +196,12 @@ def auto_xshell_input():
     # power_on()
     # sleep(5)
     #
-    # for _ in range(5):
-    #     text("A2tmGHgGjYgV1MN4")
-    #     keyevent("{ENTER}")
-    #     sleep(1)
-    # time.sleep(5)
-    # assert_exists(Template(r"../res/img/cmd_begin.png", threshold=0.9))
+    for _ in range(5):
+        text("A2tmGHgGjYgV1MN4")
+        keyevent("{ENTER}")
+        sleep(1)
+    time.sleep(5)
+    assert_exists(Template(r"../res/img/cmd_begin.png", threshold=0.9))
 
     # cmd1 = "set serverip 192.168.16.222; set ipaddr 192.168.16.157;"
     cmd1 = "set serverip {}; set ipaddr 192.168.1.157;".format(current_ip)
