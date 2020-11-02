@@ -14,5 +14,5 @@
   "dsn5414a_browse_file": "D:\\auto_burn_module\\DSN5414a\\CH05101439-A1_DSN5454a_FTA_APPLICATION_SOFTWARE_IMAGE\\loader\\FullImage.bin",
   "dsn5414a_browse_file_experimental": "D:\\auto_burn_module\\DSN5414a\\CH05101435-B2 DSN5414a UNSIGNED BOOT v1.02 AND FAKE SIGNED LOADER v1.02\\make_loader_tool\\bootloader.bin",
   "dsn7714i_sdram_file": "D:\\auto_burn_module\\DSN7714i\\WinGDB\\DDR_init\\C3507_QFP128_DDR3_256MB_1600MHZ.abs",
-  "dsn7714i_download_file": "D:\\auto_burn_module\\DSN7714i\\burn_file\\s3507_sf_burn_sabbat_16m.ini"
+  "dsn7714i_download_file": "D:\\auto_burn_module\\DSN7714i\\CH05101459_B3_DSN7714i_IRDETO_SIGNED_bootloader_IMAGE_V5.1.2\\images\\s3507_sf_burn_sabbat_16m.ini"
 }

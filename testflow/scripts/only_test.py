@@ -1,12 +1,3 @@
-import os
-while True:
-    a = input("please input your choose:")
-    if a == "":
-        pass
-        # auto_xshell_input()
-    if a == "q" or a == "Q":
-        os.system("taskkill /F /IM ATServer.exe")
-        os.system("taskkill /F /IM tftpd32.exe")
-        os.system("taskkill /F /IM Xshell.exe")
-        # os.system("taskkill /F /IM explorer.exe")
-        break
+import win32api
+win32api.ShellExecute(0, 'open', r'D:\auto_burn_module\DTN7514I\WinGDB_v1.4.0\WinGDB_v1.4.0\WinGDB_v1.4.0.exe', '', '',
+                      1)
