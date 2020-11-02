@@ -11,7 +11,7 @@ import socket
 from airtest.core.settings import Settings
 from ektlib import ekt_rds, ekt_dta, ekt_file, ekt_net
 
-Settings.FIND_TIMEOUT = 30
+Settings.FIND_TIMEOUT = 60
 
 logging.basicConfig(level=logging.INFO,  # 控制台打印的日志级别
                     filename='auto_burn.log',
@@ -58,6 +58,7 @@ def get_local_ip():
             print("current ip is : {}".format(ip))
     return ip
 
+
 def v5_sys_init():
     """
     init the system,establish connect to the ATserver.
@@ -69,6 +70,7 @@ def v5_sys_init():
     dta = ekt_dta.EktDtDevice(net)
     doc = ekt_file.EktFileCfg(net)
     return rds, doc, dta
+
 
 def xshell_import_cmd(cmd):
     # transfer_str = ""
@@ -82,6 +84,7 @@ def xshell_import_cmd(cmd):
     keyevent("{ENTER}")
     sleep(1.5)
 
+
 with open(r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\config.json", 'r') as load_f:
     load_dict = json.load(load_f)
     # print(load_dict)
@@ -91,7 +94,8 @@ with open(r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\con
     print(dtn7514i_download_file)
 
 # double_click(Template(r"../res/img/open_hi_tool.png", threshold=0.7))
-win32api.ShellExecute(0, 'open', r'D:\7514\wingdb_tool\WinGDB_v1.4.0\WinGDB_v1.4.0\WinGDB_v1.4.0.exe', '', '', 1)
+win32api.ShellExecute(0, 'open', r'D:\auto_burn_module\DTN7514I\WinGDB_v1.4.0\WinGDB_v1.4.0\WinGDB_v1.4.0.exe', '', '',
+                      1)
 # assert_exists(Template(r"../res/img/wingdb/wingdb_ico.png", threshold=0.9))
 # logging.info('assert_exists(Template(r"../res/img/wingdb/wingdb_ico.png", threshold=0.9))')
 touch(Template(r"../res/img/wingdb/wingdb_ice.png"))
@@ -112,13 +116,13 @@ time.sleep(0.5)
 touch(Template(r"../res/img/wingdb/wingdb_ice.png"))
 logging.info('touch(Template(r"../res/img/wingdb/wingdb_ice.png"))')
 time.sleep(0.5)
+touch(Template(r"../res/img/wingdb/wingdb_init_ice.png"))
+logging.info('touch(Template(r"../res/img/wingdb/wingdb_init_ice.png"))')
+time.sleep(0.5)
 rds, _, _ = v5_sys_init()
 rds.power_off()
 time.sleep(3)
 rds.power_on()
-touch(Template(r"../res/img/wingdb/wingdb_init_ice.png"))
-logging.info('touch(Template(r"../res/img/wingdb/wingdb_init_ice.png"))')
-time.sleep(0.5)
 touch(Template(r"../res/img/wingdb/wingdb_init_ok.png"))
 logging.info('touch(Template(r"../res/img/wingdb/wingdb_init_ok.png"))')
 time.sleep(0.5)
@@ -133,7 +137,7 @@ logging.info('touch(Template(r"../res/img/wingdb/wingdb_download.png"))')
 time.sleep(0.5)
 xshell_import_cmd(dtn7514i_download_file)
 logging.info('xshell_import_cmd(dsn7514i_download_file)')
-time.sleep(10)
+time.sleep(60)
 touch(Template(r"../res/img/wingdb/wingdb_mst_output.png"))
 logging.info('touch(Template(r"../res/img/wingdb/wingdb_mst_output.png"))')
 time.sleep(0.5)
@@ -144,10 +148,14 @@ logging.info('touch(Template(r"../res/img/wingdb/wingdb_ice.png"))')
 time.sleep(0.5)
 touch(Template(r"../res/img/wingdb/wingdb_go.png"))
 logging.info('touch(Template(r"../res/img/wingdb/wingdb_go.png"))')
-time.sleep(30)
+# try:
+
+# time.sleep(90)
+time.sleep(50)
 try:
     assert_exists(Template(r"../res/img/wingdb/wingdb_burn_success.png", threshold=0.9))
 except:
     assert_exists(Template(r"../res/img/wingdb/wingdb_burn_success.png", threshold=0.9))
 logging.info('assert_exists(Template(r"../res/img/wingdb/wingdb_burn_success.png", threshold=0.9))')
 os.system("taskkill /F /IM WinGDB_v1.4.0.exe")
+os.system("taskkill /F /IM ATServer.exe")
