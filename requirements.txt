@@ -1,1 +1,1 @@
-airtest
+airtest==1.1.6
