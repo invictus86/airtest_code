@@ -178,7 +178,7 @@ def auto_xshell_input():
     cmd1 = "set ipaddr 192.168.1.199"
     cmd2 = "tftp {}:product_sabbat_dual.abs;".format(current_ip)
     cmd3 = "nor write 0x80007fc0 0 ${filesize};"
-    cmd4 = "tftp {}:bootenv.ubo;".format(current_ip)
+    cmd4 = "tftp {}:nor_env_din7005vgtd;".format(current_ip)
     cmd5 = "nor write 0x80007fc0 0x00260000 0x20000;"
     cmd6 = "tftp {}:boot_logo.bin;".format(current_ip)
     cmd7 = "nor write 0x80007fc0 0x00240000 0x20000;"
@@ -225,6 +225,8 @@ def auto_xshell_input():
     cmd35 = "nandwrite /dev/mtd/deviceinfo -p /mnt/hdd_1/loader/deviceinfo.abs"
     cmd36 = "flash_eraseall /dev/mtd/loader_data"
     cmd37 = "dd if=/mnt/hdd_1/loader/erase_loader_data.bin of=/dev/mtd/loader_data"
+    cmd38 = "flash_eraseall /dev/mtd/bootlogo"
+    cmd39 = "dd if=/mnt/hdd_1/loader/logo_enriching.abs_GTD of=/dev/mtd/bootlogo"
 
     xshell_import_cmd([cmd1])
     time.sleep(1)
@@ -284,7 +286,7 @@ def auto_xshell_input():
     time.sleep(25)
     assert_exists(Template(r"../res/img/DCD7015v/cmd20_success.png", threshold=0.9))
     xshell_import_cmd([cmd14])
-    time.sleep(26)
+    time.sleep(15)
     assert_exists(Template(r"../res/img/DCD7015v/cmd20_success.png", threshold=0.9))
     xshell_import_cmd([cmd15])
     assert_exists(Template(r"../res/img/DCD7015v/cmd20_success.png", threshold=0.9))
@@ -363,6 +365,10 @@ def auto_xshell_input():
     xshell_import_cmd([cmd36])
     time.sleep(5)
     xshell_import_cmd([cmd37])
+    time.sleep(5)
+    xshell_import_cmd([cmd38])
+    time.sleep(5)
+    xshell_import_cmd([cmd39])
     time.sleep(5)
 
     power_off()
