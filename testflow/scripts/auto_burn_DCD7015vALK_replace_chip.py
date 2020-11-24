@@ -383,7 +383,16 @@ ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 1)
 while True:
     a = input("please input your choose:")
     if a == "":
+        time.sleep(3)
+        ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 6)
+        if not cli_setup():
+            auto_setup(__file__, logdir=r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\log", devices=[
+                #             "Windows:///524676",
+                "Windows:///?title_re=localhost_serial*",
+                #         "Windows:///?title_re=*Xshell",
+            ])
         auto_xshell_input()
+        ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 1)
     elif a == "q" or a == "Q":
         os.system("taskkill /F /IM ATServer.exe")
         os.system("taskkill /F /IM tftpd32.exe")
