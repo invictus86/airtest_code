@@ -163,7 +163,7 @@ def auto_xshell_input():
     sleep(5)
 
 
-    for _ in range(5):
+    for _ in range(10):
         text("A2tmGHgGjYgV1MN4")
         keyevent("{ENTER}")
         sleep(1)
