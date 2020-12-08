@@ -11,7 +11,6 @@
   "dtn7514i_download_file": "D:\\auto_burn_module\\DTN7514I\\CH05101497_B4_DXN7514i_IRDETO_SIGNED_bootloader_IMAGE_V5.1.14\\images\\s3702_sf_burn_sabbat_unsigned_bootloader.ini",
   "dtn7414g_stream_file": "D:\\auto_burn_module\\DCN7414g\\Loader_for_DCN7414g\\WinGDB_v1.3.0\\C3505_DB_sdram_DDR3_256MB_1866MHZ.abs",
   "dtn7414g_download_file": "D:\\auto_burn_module\\DCN7414g\\Loader_for_DCN7414g\\s3505_sf_burn_sabbat_8m.ini",
-  "dsn5414a_browse_file": "D:\\auto_burn_module\\DSN5414a\\CH05101439-A1_DSN5454a_FTA_APPLICATION_SOFTWARE_IMAGE\\loader\\FullImage.bin",
   "dsn5414a_browse_file_experimental": "D:\\auto_burn_module\\DSN5414a\\CH05101435-B6 DSN5414a UNSIGNED BOOT v1.04 AND FAKE SIGNED LOADER v1.04\\make_loader_tool\\bootloader.bin",
   "dsn7714i_sdram_file": "D:\\auto_burn_module\\DSN7714i\\WinGDB\\DDR_init\\C3507_QFP128_DDR3_256MB_1600MHZ.abs",
   "dsn7714i_download_file": "D:\\auto_burn_module\\DSN7714i\\CH05101459_B3_DSN7714i_IRDETO_SIGNED_bootloader_IMAGE_V5.1.2\\images\\s3507_sf_burn_sabbat_16m.ini",
