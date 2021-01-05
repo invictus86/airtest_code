@@ -29,12 +29,22 @@ if not cli_setup():
     ]
                )
 
-ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 6)
 # script content
 print("start...")
 
+ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 6)
+
+
 double_click(Template(r"../res/img/ATserver/atserver_startup.png", threshold=0.9))
 time.sleep(5)
+
+if not cli_setup():
+    auto_setup(__file__, logdir=r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\log", devices=[
+        "Windows:///?title_re=ATServer*",
+        # "Windows:///",
+    ]
+               )
+
 touch(Template(r"../res/img/ATserver/atserver_connect.png", threshold=0.9))
 time.sleep(5)
 try:
@@ -43,7 +53,6 @@ except:
     # time.sleep(15)
     assert_exists(Template(r"../res/img/ATserver/atserver_data_not_found.png", threshold=0.9))
     touch(Template(r"../res/img/ATserver/atserver_confirm.png"))
-
 time.sleep(3)
 
 
