@@ -178,7 +178,7 @@ def auto_xshell_input():
     cmd1 = "set ipaddr 192.168.1.199"
     cmd2 = "tftp {}:product_sabbat_dual.abs;".format(current_ip)
     cmd3 = "nor write 0x80007fc0 0 ${filesize};"
-    cmd4 = "tftp {}:nor_env_din7005vgtd;".format(current_ip)
+    cmd4 = "tftp {}:bootenv_test.bin;".format(current_ip)
     cmd5 = "nor write 0x80007fc0 0x00260000 0x20000;"
     cmd6 = "tftp {}:boot_logo.bin;".format(current_ip)
     cmd7 = "nor write 0x80007fc0 0x00240000 0x20000;"
@@ -194,8 +194,8 @@ def auto_xshell_input():
     cmd10 = "nand write 0x80007fc0 deviceinfo 0x00080000"
 
     cmd11 = "tftp {}:fsi.bin".format(current_ip)
-    cmd12 = "nand erase rootfs 0x08c00000"
-    cmd13 = "nand write 0x80007fc0 rootfs 0x08c00000"
+    cmd12 = "nand erase rootfs 0x09b80000"
+    cmd13 = "nand write 0x80007fc0 rootfs 0x09b80000"
 
     cmd14 = "tftp {}:fsi.uImage".format(current_ip)
     cmd15 = "nand erase kernel 0x00a00000"
