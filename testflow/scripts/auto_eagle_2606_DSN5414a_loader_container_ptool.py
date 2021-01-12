@@ -7,7 +7,7 @@ import win32api, json
 import ctypes
 import logging
 import socket
-from ektlib import ekt_rds, ekt_net
+from ektlib import ekt_rds, ekt_dta, ekt_file, ekt_net
 import file_operate
 
 logging.basicConfig(level=logging.INFO,  # 控制台打印的日志级别
@@ -40,12 +40,12 @@ if not cli_setup():
 touch(Template(r"../res/img/ATserver/atserver_connect.png", threshold=0.9))
 time.sleep(5)
 try:
-    assert_exists(Template(r"../res/img/ATserver/atserver_connect_success.png", threshold=0.9))
-except:
-    # time.sleep(15)
     assert_exists(Template(r"../res/img/ATserver/atserver_data_not_found.png", threshold=0.9))
     touch(Template(r"../res/img/ATserver/atserver_confirm.png"))
+except:
+    assert_exists(Template(r"../res/img/ATserver/atserver_connect_success.png", threshold=0.9))
 time.sleep(3)
+
 
 def get_local_ip():
     """
@@ -59,15 +59,6 @@ def get_local_ip():
             print("current ip is : {}".format(ip))
     return ip
 
-
-current_ip = get_local_ip()
-HOST = current_ip
-PORT = 8900
-BUFSIZ = 4096
-ADDR = (HOST, PORT)
-
-net = ekt_net.EktNetClient(current_ip, 8900)
-rds = ekt_rds.EktRds(net)
 
 def xshell_import_cmd(cmd):
     # transfer_str = ""
@@ -85,6 +76,66 @@ def xshell_import_cmd(cmd):
 
 # script content
 print("start...")
+
+
+def v5_sys_init():
+    """
+    init the system,establish connect to the ATserver.
+    :return: rds(EKTRds instance),doc(EktFileCfg instance),dta(EktDtDevice instance)
+    """
+    curretn_ip = get_local_ip()
+    net = ekt_net.EktNetClient(curretn_ip, 8900)
+    rds = ekt_rds.EktRds(net)
+    dta = ekt_dta.EktDtDevice(net)
+    doc = ekt_file.EktFileCfg(net)
+    return rds, doc, dta
+
+
+def v5_usb_init():
+    """
+    perform copy cd5 file from the computer to the usb,then switch the usb connect to the STB and reboot the STB
+    :param cd5_file: str,the CD5 file name
+    :return: rds,EktRds instance
+    """
+    rds, _, _ = v5_sys_init()
+    src_file = r"D:\auto_burn_module\DSN5414a\UpgradeFile.bin"
+    dst_file = r"F:\UpgradeFile.bin"
+    print(src_file)
+    logging.info(src_file)
+    print(dst_file)
+    logging.info(dst_file)
+
+    rds.power_off()
+    logging.info("rds.power_off()")
+    time.sleep(2)
+    rds.usb_switch_pc()
+    logging.info("rds.usb_switch_pc()")
+    time.sleep(8)
+    file_operate.cope_file_src_dst(src_file, dst_file)
+    logging.info("file_operate.cope_file_src_dst(src_file, dst_file)")
+    time.sleep(6)
+    rds.power_on()
+    logging.info("rds.power_on()")
+    time.sleep(1)
+    rds.usb_switch_stb()
+    logging.info("rds.usb_switch_stb()")
+    return rds
+
+
+def file_usb_before_enter_app(wait_time=0):
+    """
+    upgrade via USB before the STB can enter DVT APP
+    :param filename:str,CD5 file name
+    :param match_info: the texts to be matched
+    :param wait_time: sleep time before start match
+    :param timeout_secs: the time to match texts
+    :return: None
+    """
+    rds = v5_usb_init()
+    time.sleep(wait_time)
+    rds.usb_switch_none()
+    logging.info("rds.usb_switch_none()")
+    return rds
 
 
 double_click(Template(r"../res/img/DSN5414a/synergy.png", threshold=0.7))
@@ -134,24 +185,15 @@ touch(Template(r"../res/img/DSN5414a/burn_success_ok.png"))
 
 ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 1)
 while True:
-    rec_data = input("请确认断开板上飞线之后按Enter按键:")
-    if rec_data == "":
-        rds.power_off()
-        time.sleep(3)
-        rds.usb_switch_pc()
-        time.sleep(5)
-        file_operate.cope_floder_src_dst(r"D:\auto_burn_module\DSN5414a\UpgradeFile.bin", r"F:")
-        time.sleep(3)
-        rds.usb_switch_stb()
-        time.sleep(3)
-        rds.power_on()
-        time.sleep(60)
+    rec_data = input("请确认断开板上飞线,连接USB线之后按a之后回车:")
+    if rec_data == "a" or rec_data == "A":
+        file_usb_before_enter_app(60)
         break
     else:
         print("非法输入")
 
 while True:
-    a = input("直接回车键(enter)    :烧录下一块板\r\n字母(q或者Q)之后回车 :退出\r\nplease input your choose:")
+    a = input("短接后按回车键(enter)    :烧录下一块板\r\n字母(q或者Q)之后按回车键 :退出\r\nplease input your choose:")
     if a == "":
         ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 6)
         touch(Template(r"../res/img/DSN5414a/start.png"))
@@ -160,24 +202,17 @@ while True:
         touch(Template(r"../res/img/DSN5414a/burn_success_ok.png"))
         ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 1)
         while True:
-            rec_data = input("请确认断开板上飞线之后按Enter按键:")
-            if rec_data == "":
-                rds.power_off()
-                time.sleep(3)
-                rds.usb_switch_pc()
-                time.sleep(5)
-                file_operate.cope_floder_src_dst(r"D:\auto_burn_module\DSN5414a\UpgradeFile.bin", r"F:")
-                time.sleep(3)
-                rds.usb_switch_stb()
-                time.sleep(3)
-                rds.power_on()
-                time.sleep(60)
+            rec_data = input("请确认断开板上飞线,连接USB线之后按a之后回车:")
+            if rec_data == "a" or rec_data == "A":
+                file_usb_before_enter_app(60)
                 break
             else:
                 print("非法输入")
-    if a == "q" or a == "Q":
+    elif a == "q" or a == "Q":
         # touch(Template(r"../res/img/exit.png", threshold=0.5))
         os.system("taskkill /F /IM WinSTBUpgrader.exe")
         os.system("taskkill /F /IM LaunchPad.exe")
         os.system("taskkill /F /IM ATServer.exe")
         break
+    else:
+        print("非法输入")

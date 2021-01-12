@@ -39,7 +39,7 @@ import ctypes
 import logging
 
 while True:
-    a = input("直接回车键(enter)    :烧录下一块板\r\n字母(q或者Q)之后回车 :退出\r\nplease input your choose:")
+    a = input("短接后按回车键(enter)    :烧录下一块板\r\n字母(q或者Q)之后按回车键 :退出\r\nplease input your choose:")
     # a = input("please input your choose:")
     if a == "":
         print(111)
