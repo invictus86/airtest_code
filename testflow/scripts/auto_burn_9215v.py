@@ -52,7 +52,7 @@ win32api.ShellExecute(0, 'open', r'C:\ProgramData\Microsoft\Windows\Start Menu\P
                       '', '', 1)
 # assert_exists(Template(r"../res/img/xshell_session.png", threshold=0.9))
 time.sleep(2)
-double_click(Template(r"../res/img/localhost.png"))
+# double_click(Template(r"../res/img/localhost.png"))
 
 if not cli_setup():
     auto_setup(__file__, logdir=r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\log", devices=[
@@ -256,6 +256,12 @@ ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 1)
 while True:
     a = input("please input your choose:")
     if a == "":
+        if not cli_setup():
+            auto_setup(__file__, logdir=r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\log", devices=[
+                #             "Windows:///524676",
+                "Windows:///?title_re=localhost_serial*",
+                #         "Windows:///?title_re=*Xshell",
+            ])
         auto_xshell_input()
         ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 1)
     if a == "q" or a == "Q":

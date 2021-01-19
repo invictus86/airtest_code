@@ -50,7 +50,7 @@ double_click(Template(r"../res/img/tftp/ftfp_startup.png", threshold=0.9))
 win32api.ShellExecute(0, 'open', r'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Xmanager Enterprise 5\Xshell', '', '', 1)
 # assert_exists(Template(r"../res/img/xshell_session.png", threshold=0.9))
 time.sleep(2)
-double_click(Template(r"../res/img/localhost.png"))
+# double_click(Template(r"../res/img/localhost.png"))
 
 
 

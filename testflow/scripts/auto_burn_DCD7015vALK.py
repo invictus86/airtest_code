@@ -48,7 +48,7 @@ double_click(Template(r"../res/img/DCD7015v/tftpd32.png", threshold=0.9))
 win32api.ShellExecute(0, 'open', r'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Xmanager Enterprise 5\Xshell',
                       '', '', 1)
 time.sleep(2)
-double_click(Template(r"../res/img/localhost.png"))
+# double_click(Template(r"../res/img/localhost.png"))
 
 if not cli_setup():
     auto_setup(__file__, logdir=r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\log", devices=[
