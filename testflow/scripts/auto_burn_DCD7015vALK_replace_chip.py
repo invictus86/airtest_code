@@ -265,8 +265,15 @@ def auto_xshell_input():
     power_off()
     sleep(3)
     power_on()
-    sleep(20)
-    assert_exists(Template(r"../res/img/DCD7015v/cmd20_success.png", threshold=0.9))
+    # sleep(20)
+    sleep(15)
+    for _ in range(15):
+        text("A2tmGHgGjYgV1MN4")
+        keyevent("{ENTER}")
+        sleep(1)
+    time.sleep(5)
+    assert_exists(Template(r"../res/img/DCD7015v/boot_cmd.png", threshold=0.9))
+    # assert_exists(Template(r"../res/img/DCD7015v/cmd20_success.png", threshold=0.9))
 
     xshell_import_cmd(["set ipaddr 192.168.2.143"])
     time.sleep(3)
