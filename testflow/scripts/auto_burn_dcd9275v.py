@@ -101,6 +101,7 @@ time.sleep(2)
 del rds
 del net
 
+
 def power_on():
     tcpCliSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
@@ -178,17 +179,17 @@ def auto_xshell_input():
     cmd16 = "setenv serverip {}".format(current_ip)
     cmd17 = "setenv loadaddr 0x1000000"
     cmd18 = "setenv mtdids 'nand0=hinand'"
-    cmd19 = "setenv mtdparts 'mtdparts=hinand:8M(bootbak),4M(sbl),4M(sblbak),16M(trustedcore),16M(trustedcorebak),4M(baseparam),4M(pqparam),4M(logo),4M(deviceinfo),8M(bootmedia),16M(kernel),160M(rootfs),16M(upg_kernel),60M(upg_rootfs),8M(serial),60M(user),1M(fdt),-(others)'"
-    cmd20 = "setenv sfcparts 'hi_sfc:1408K(fastboot),256K(bootenv),-(nvram)'"
-    cmd21 = "setenv setssiargs 'setenv bootargs init=/init console=ttyAMA0,115200 ${mtdparts}\;${sfcparts} root=/dev/mtdblock_robbs16 rootfstype=squashfs ro'"
-    cmd22 = "setenv ssiboot 'run setssiargs;run ssibootcmd'"
+    cmd19 = "setenv mtdparts 'mtdparts=hinand:16M(trustedcore),16M(trustedcorebak),4M(baseparam),4M(pqparam),4M(logo),4M(deviceinfo),16M(kernel),300M(rootfs),16M(upg_kernel),55M(upg_rootfs),4M(serial),64M(user),1M(fdt),4M(cadata),-(others)'"
+    cmd20 = "setenv sfcparts 'hi_sfc:1408K(fastboot),256K(bootenv)'"
+    cmd21 = "setenv setssiargs 'setenv bootargs init=/init console=null,115200 loglevel=0 ${mtdparts}\;${sfcparts} root=/dev/mtdblock_robbs11 rootfstype=squashfs ro'"
+    cmd22 = "setenv ssiboot 'run setssiargs;sigchk ssi;run ssibootcmd'"
     cmd23 = "setenv ssibootcmd 'setenv notee y;nand read ${loadaddr} upg_kernel 0x1000000;bootm ${loadaddr}'"
-    cmd24 = "setenv setfsiargs 'setenv bootargs init=/init console=ttyAMA0,115200 ${mtdparts}\;${sfcparts} root=/dev/mtdblock_robbs14 rootfstype=squashfs ro'"
+    cmd24 = "setenv setfsiargs 'setenv bootargs init=/init console=null,115200 loglevel=0 ${mtdparts}\;${sfcparts} root=/dev/mtdblock_robbs9 rootfstype=squashfs ro'"
     cmd25 = "setenv fsibootcmd 'loadteeos;nand read ${loadaddr} kernel 0x1000000;bootm ${loadaddr}'"
-    cmd26 = "setenv fsiboot 'run setfsiargs;run fsibootcmd'"
-    cmd27 = "setenv bootargs 'init=/init console=ttyAMA0,115200 mtdparts=hinand:8M(bootbak),4M(sbl),4M(sblbak),16M(trustedcore),16M(trustedcorebak),4M(baseparam),4M(pqparam),4M(logo),4M(deviceinfo),8M(bootmedia),16M(kernel),160M(rootfs),16M(upg_kernel),48M(upg_rootfs),8M(serial),60M(user),-(others);hi_sfc:1408k(fastboot),256K(bootenv),-(nvram) root=/dev/mtdblock_robbs14 rootfstype=squashfs ro'"
-    cmd28 = "setenv panel_type gpio"
-    cmd29 = "setenv ledconf '42 32 29 28 20 45 47'"
+    cmd26 = "setenv fsiboot 'run setfsiargs;sigchk fsi;run fsibootcmd'"
+    cmd27 = "setenv bootargs 'init=/init console=null,115200 loglevel=0 mtdparts=hinand:16M(trustedcore),16M(trustedcorebak),4M(baseparam),4M(pqparam),4M(logo),4M(deviceinfo),16M(kernel),300M(rootfs),16M(upg_kernel),55M(upg_rootfs),4M(serial),64M(user),1M(fdt),4M(cadata),-(others);hi_sfc:1408K(fastboot),256K(bootenv) root=/dev/mtdblock_robbs9 rootfstype=squashfs ro'"
+    # cmd28 = "setenv panel_type gpio"
+    cmd29 = "setenv ledconf '0 20 0 0 0 0'"
     cmd30 = "setenv stdin serial"
     cmd31 = "setenv stdout serial"
     cmd32 = "setenv stderr serial"
@@ -211,9 +212,8 @@ def auto_xshell_input():
     time.sleep(3)
     keyevent("{ENTER}")
     list_cmd1 = [cmd2, cmd3, cmd4, cmd5, cmd6, cmd7, cmd8, cmd9, cmd10, cmd11, cmd12, cmd13, cmd14, cmd15,
-                 cmd16, cmd17, cmd18, cmd19, cmd20, cmd21, cmd22, cmd23, cmd24, cmd25, cmd26, cmd27, cmd28, cmd29,
+                 cmd16, cmd17, cmd18, cmd19, cmd20, cmd21, cmd22, cmd23, cmd24, cmd25, cmd26, cmd27, cmd29,
                  cmd30, cmd31, cmd32, cmd33, cmd34]
-
 
     xshell_import_cmd(list_cmd1)
 
@@ -248,7 +248,6 @@ def auto_xshell_input():
     time.sleep(5)
     xshell_import_cmd([cmd45])
     time.sleep(5)
-
 
 
 auto_xshell_input()
