@@ -203,8 +203,8 @@ def auto_xshell_input():
     cmd40 = "tftp fdt.dtbo;nand erase fdt;nand write ${loadaddr} fdt 0x100000"
     cmd41 = "res"
 
-    cmd42 = "./mnt/hdd_1/sample_product_pv_stb ./mnt/hdd_1/pv_cfg_dbg_vmx_production.txt"
-    cmd43 = "1"
+    # cmd42 = "./mnt/hdd_1/sample_product_pv_stb ./mnt/hdd_1/pv_cfg_dbg_vmx_production.txt"
+    # cmd43 = "1"
     cmd44 = "flash_eraseall /dev/mtd/fastboot"
     cmd45 = "dd if=/mnt/hdd_1/fastboot.bin of=/dev/mtd/fastboot"
 
@@ -240,10 +240,10 @@ def auto_xshell_input():
     xshell_import_cmd([cmd41])
     time.sleep(25)
     assert_exists(Template(r"../res/img/9215v_xshell/burn_ssi_success.png", threshold=0.9))
-    xshell_import_cmd([cmd42])
-    time.sleep(5)
-    xshell_import_cmd([cmd43])
-    time.sleep(5)
+    # xshell_import_cmd([cmd42])
+    # time.sleep(5)
+    # xshell_import_cmd([cmd43])
+    # time.sleep(5)
     xshell_import_cmd([cmd44])
     time.sleep(5)
     xshell_import_cmd([cmd45])
