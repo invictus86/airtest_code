@@ -43,7 +43,7 @@ except:
 time.sleep(3)
 
 os.system(
-    r'explorer.exe /n, D:\DCD9275v\SSI.dcd9275_master.2021.02.04.22\SSI.dcd9275_master.2021.02.04.22')
+    r'explorer.exe /n, D:\DCD9275v\SSI.dcd9275vOC_master.2021.02.09.1\SSI.dcd9275vOC_master.2021.02.09.1')
 time.sleep(1)
 # win32api.ShellExecute(0, 'open', r'D:\flash_samples_7005\Flash samples\tftpd32.exe', '', '', 1)
 double_click(Template(r"../res/img/9215v_xshell/9215v_tftp.png", threshold=0.9))
@@ -181,10 +181,10 @@ def auto_xshell_input():
     cmd18 = "setenv mtdids 'nand0=hinand'"
     cmd19 = "setenv mtdparts 'mtdparts=hinand:16M(trustedcore),16M(trustedcorebak),4M(baseparam),4M(pqparam),4M(logo),4M(deviceinfo),16M(kernel),300M(rootfs),16M(upg_kernel),55M(upg_rootfs),4M(serial),64M(user),1M(fdt),4M(cadata),-(others)'"
     cmd20 = "setenv sfcparts 'hi_sfc:1408K(fastboot),256K(bootenv)'"
-    cmd21 = "setenv setssiargs 'setenv bootargs init=/init console=ttyAMA0,115200 ${mtdparts}\;${sfcparts} root=/dev/mtdblock_robbs16 rootfstype=squashfs ro'"
+    cmd21 = "setenv setssiargs 'setenv bootargs init=/init console=ttyAMA0,115200 ${mtdparts}\;${sfcparts} root=/dev/mtdblock_robbs11 rootfstype=squashfs ro'"
     cmd22 = "setenv ssiboot 'run setssiargs;run ssibootcmd'"
     cmd23 = "setenv ssibootcmd 'setenv notee y;nand read ${loadaddr} upg_kernel 0x1000000;bootm ${loadaddr}'"
-    cmd24 = "setenv setfsiargs 'setenv bootargs init=/init console=ttyAMA0,115200 ${mtdparts}\;${sfcparts} root=/dev/mtdblock_robbs14 rootfstype=squashfs ro'"
+    cmd24 = "setenv setfsiargs 'setenv bootargs init=/init console=ttyAMA0,115200 ${mtdparts}\;${sfcparts} root=/dev/mtdblock_robbs9 rootfstype=squashfs ro'"
     cmd25 = "setenv fsibootcmd 'loadteeos;nand read ${loadaddr} kernel 0x1000000;bootm ${loadaddr}'"
     cmd26 = "setenv fsiboot 'run setfsiargs;run fsibootcmd'"
     cmd27 = "setenv bootargs 'init=/init console=ttyAMA0,115200 mtdparts=hinand:16M(trustedcore),16M(trustedcorebak),4M(baseparam),4M(pqparam),4M(logo),4M(deviceinfo),16M(kernel),300M(rootfs),16M(upg_kernel),55M(upg_rootfs),4M(serial),64M(user),1M(fdt),4M(cadata),-(others);hi_sfc:1408K(fastboot),256K(bootenv) root=/dev/mtdblock_robbs9 rootfstype=squashfs ro'"
@@ -244,10 +244,10 @@ def auto_xshell_input():
     # time.sleep(5)
     # xshell_import_cmd([cmd43])
     # time.sleep(5)
-    xshell_import_cmd([cmd44])
-    time.sleep(5)
-    xshell_import_cmd([cmd45])
-    time.sleep(5)
+    # xshell_import_cmd([cmd44])
+    # time.sleep(5)
+    # xshell_import_cmd([cmd45])
+    # time.sleep(5)
 
 
 auto_xshell_input()
