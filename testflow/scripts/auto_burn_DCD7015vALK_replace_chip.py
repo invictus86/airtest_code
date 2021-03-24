@@ -223,6 +223,10 @@ def auto_xshell_input():
     cmd33 = "nandwrite /dev/mtd/upg_see -p /mnt/hdd_1/loader/see_bin.ubo"
     cmd34 = "flash_eraseall /dev/mtd/deviceinfo"
     cmd35 = "nandwrite /dev/mtd/deviceinfo -p /mnt/hdd_1/loader/deviceinfo.abs"
+
+    cmd34_1 = "flash_eraseall /dev/mtd/fdt"
+    cmd35_1 = "nandwrite /dev/mtd/fdt -p /mnt/hdd_1/loader/fdt.dtbo"
+
     cmd36 = "flash_eraseall /dev/mtd/loader_data"
     cmd37 = "dd if=/mnt/hdd_1/loader/erase_loader_data.bin of=/dev/mtd/loader_data"
     cmd38 = "flash_eraseall /dev/mtd/bootlogo"
@@ -370,6 +374,12 @@ def auto_xshell_input():
     time.sleep(5)
     xshell_import_cmd([cmd35])
     time.sleep(5)
+
+    xshell_import_cmd([cmd34_1])
+    time.sleep(5)
+    xshell_import_cmd([cmd35_1])
+    time.sleep(5)
+
     xshell_import_cmd([cmd36])
     time.sleep(5)
     xshell_import_cmd([cmd37])
