@@ -169,6 +169,9 @@ def auto_xshell_input():
         sleep(1)
     time.sleep(5)
     assert_exists(Template(r"../res/img/DCD7015v/boot_cmd.png", threshold=0.9))
+    keyevent("{ENTER}")
+    time.sleep(1)
+    keyevent("{ENTER}")
 
     # cmd1 = "set serverip 192.168.16.222; set ipaddr 192.168.16.157;"
 
@@ -222,7 +225,7 @@ def auto_xshell_input():
     cmd36 = "flash_eraseall /dev/mtd/loader_data"
     cmd37 = "dd if=/mnt/hdd_1/loader/erase_loader_data.bin of=/dev/mtd/loader_data"
     cmd38 = "flash_eraseall /dev/mtd/bootlogo"
-    cmd39 = "dd if=/mnt/hdd_1/loader/logo_enriching.abs of=/dev/mtd/bootlogo"
+    cmd39 = "dd if=/mnt/hdd_1/loader/logo_enriching.abs_GTD of=/dev/mtd/bootlogo"
 
     xshell_import_cmd([cmd1])
     time.sleep(1)
@@ -230,7 +233,7 @@ def auto_xshell_input():
     assert_exists(Template(r"../res/img/DCD7015v/cmd20_success.png", threshold=0.9))
     time.sleep(5)
     xshell_import_cmd([cmd3])
-    time.sleep(10)
+    time.sleep(15)
     assert_exists(Template(r"../res/img/DCD7015v/cmd20_success.png", threshold=0.9))
     xshell_import_cmd([cmd4])
     assert_exists(Template(r"../res/img/DCD7015v/cmd20_success.png", threshold=0.9))
