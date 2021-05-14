@@ -154,7 +154,7 @@ def auto_xshell_input():
     sleep(3)
     power_on()
 
-    for _ in range(10):
+    for _ in range(15):
         text("A2tmGHgGjYgV1MN4")
         keyevent("{ENTER}")
         print("A2tmGHgGjYgV1MN4")
