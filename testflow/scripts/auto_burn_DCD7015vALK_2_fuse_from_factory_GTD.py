@@ -41,7 +41,7 @@ except:
     touch(Template(r"../res/img/ATserver/atserver_confirm.png"))
 time.sleep(3)
 
-os.system(r'explorer.exe /n, D:\auto_burn_module\DCD7015vALK\din7005')
+os.system(r'explorer.exe /n, D:\auto_burn_module\DCD7015vALK\din7005_129978_GTD')
 time.sleep(1)
 double_click(Template(r"../res/img/DCD7015v/tftpd32.png", threshold=0.9))
 
@@ -86,20 +86,12 @@ rds.usb_switch_pc()
 time.sleep(5)
 filepath = "F:"
 file_operate.del_all_file(filepath)
-file_operate.cope_file_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005\all_fuse_tool\fuse_tool_vmx_v1.3",
+file_operate.cope_file_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005_129978_GTD\all_fuse_tool\fuse_tool_vmx_v1.3",
                                r"F:fuse_tool_vmx_v1.3")
-file_operate.cope_floder_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005\images", r"F:images")
+file_operate.cope_floder_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005_129978_GTD\images", r"F:images")
 
-file_operate.cope_floder_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005\loader", r"F:loader")
+file_operate.cope_floder_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005_129978_GTD\loader", r"F:loader")
 
-# file_operate.cope_file_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005\loader\bootenv.ubo", r"F:bootenv.ubo")
-# file_operate.cope_file_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005\loader\deviceinfo.abs", r"F:deviceinfo.abs")
-# file_operate.cope_file_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005\loader\erase_loader_data.bin", r"F:erase_loader_data.bin")
-# file_operate.cope_file_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005\loader\fsi.bin", r"F:fsi.bin")
-# file_operate.cope_file_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005\loader\product_sabbat_dual.abs", r"F:product_sabbat_dual.abs")
-# file_operate.cope_file_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005\loader\see_bin.ubo", r"F:see_bin.ubo")
-# file_operate.cope_file_src_dst(r"D:\auto_burn_module\DCD7015vALK\din7005\loader\vmlinux_signed_loader.bin",
-#                                r"F:vmlinux_signed_loader.bin")
 
 time.sleep(3)
 rds.usb_switch_stb()
