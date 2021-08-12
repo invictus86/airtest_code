@@ -219,7 +219,7 @@ def auto_xshell_input():
     xshell_import_cmd(list_cmd1)
 
     xshell_import_cmd([cmd35])
-    time.sleep(52)
+    time.sleep(55)
     assert_exists(Template(r"../res/img/9215v_xshell/cmd35_success.png", threshold=0.9))
     xshell_import_cmd([cmd36])
     time.sleep(10)
