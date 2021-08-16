@@ -87,7 +87,7 @@ ADDR = (HOST, PORT)
 net = ekt_net.EktNetClient(current_ip, 8900)
 rds = ekt_rds.EktRds(net)
 rds.usb_switch_pc()
-time.sleep(5)
+time.sleep(10)
 filepath = "F:"
 file_operate.del_all_file(filepath)
 file_operate.cope_file_src_dst(r"D:\auto_burn_module\DXD9215v_auto_burn\dxd9215v_fuse\fastboot.bin",
@@ -95,7 +95,7 @@ file_operate.cope_file_src_dst(r"D:\auto_burn_module\DXD9215v_auto_burn\dxd9215v
 file_operate.cope_file_src_dst(r"D:\auto_burn_module\DXD9215v_auto_burn\dxd9215v_fuse\pv_cfg_dbg_vmx_production.txt",
                                r"F:pv_cfg_dbg_vmx_production.txt")
 file_operate.cope_file_src_dst(r"D:\auto_burn_module\DXD9215v_auto_burn\dxd9215v_fuse\sample_product_pv_stb", r"F:sample_product_pv_stb")
-file_operate.cope_file_src_dst(r"D:\auto_burn_module\DXD9215v_auto_burn\dxd9215v_fuse\lib_fuse", r"F:lib_fuse")
+file_operate.cope_floder_src_dst(r"D:\auto_burn_module\DXD9215v_auto_burn\dxd9215v_fuse\lib_fuse", r"F:lib_fuse")
 
 time.sleep(3)
 rds.usb_switch_stb()
