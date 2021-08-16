@@ -101,6 +101,7 @@ time.sleep(2)
 del rds
 del net
 
+
 def power_on():
     tcpCliSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
@@ -160,7 +161,6 @@ def auto_xshell_input():
         print("A2tmGHgGjYgV1MN4")
     assert_exists(Template(r"../res/img/9215v_xshell/fastboot_cmd.png", threshold=0.9))
 
-
     cmd1 = "setenv baudrate 115200"
     cmd2 = "setenv bootcmd 'run ssiboot'"
     cmd3 = "setenv bootdelay 1"
@@ -215,7 +215,6 @@ def auto_xshell_input():
                  cmd16, cmd17, cmd18, cmd19, cmd20, cmd21, cmd22, cmd23, cmd24, cmd25, cmd26, cmd27, cmd28, cmd29,
                  cmd30, cmd31, cmd32, cmd33, cmd34]
 
-
     xshell_import_cmd(list_cmd1)
 
     xshell_import_cmd([cmd35])
@@ -240,14 +239,13 @@ def auto_xshell_input():
     time.sleep(25)
     assert_exists(Template(r"../res/img/9215v_xshell/burn_ssi_success.png", threshold=0.9))
     xshell_import_cmd([cmd42])
-    time.sleep(5)
+    time.sleep(8)
     xshell_import_cmd([cmd43])
     time.sleep(5)
     xshell_import_cmd([cmd44])
     time.sleep(5)
     xshell_import_cmd([cmd45])
     time.sleep(5)
-
 
 
 auto_xshell_input()
