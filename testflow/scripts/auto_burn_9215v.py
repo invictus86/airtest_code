@@ -87,7 +87,7 @@ ADDR = (HOST, PORT)
 net = ekt_net.EktNetClient(current_ip, 8900)
 rds = ekt_rds.EktRds(net)
 rds.usb_switch_pc()
-time.sleep(5)
+time.sleep(10)
 filepath = "F:"
 file_operate.del_all_file(filepath)
 file_operate.cope_file_src_dst(r"D:\9215v\dsd9215_fuse\fastboot.bin",
