@@ -94,6 +94,7 @@ file_operate.cope_file_src_dst(r"D:\9215v\dsd9215_fuse\fastboot.bin",
                                r"F:fastboot.bin")
 file_operate.cope_file_src_dst(r"D:\9215v\dsd9215_fuse\pv_cfg_dbg_vmx_production.txt", r"F:pv_cfg_dbg_vmx_production.txt")
 file_operate.cope_file_src_dst(r"D:\9215v\dsd9215_fuse\sample_product_pv_stb", r"F:sample_product_pv_stb")
+file_operate.cope_floder_src_dst(r"D:\9215v\dsd9215_fuse\lib", r"F:lib")
 
 time.sleep(3)
 rds.usb_switch_stb()
@@ -203,6 +204,7 @@ def auto_xshell_input():
     cmd40 = "tftp fdt.dtbo;nand erase fdt;nand write ${loadaddr} fdt 0x100000"
     cmd41 = "res"
 
+    cmd41_5 = "export LD_LIBRARY_PATH=/mnt/hdd_1/lib/:$LD_LIBRARY_PATH"
     cmd42 = "./mnt/hdd_1/sample_product_pv_stb ./mnt/hdd_1/pv_cfg_dbg_vmx_production.txt"
     cmd43 = "1"
     cmd44 = "flash_eraseall /dev/mtd/fastboot"
@@ -238,6 +240,8 @@ def auto_xshell_input():
     xshell_import_cmd([cmd41])
     time.sleep(25)
     assert_exists(Template(r"../res/img/9215v_xshell/burn_ssi_success.png", threshold=0.9))
+    xshell_import_cmd([cmd41_5])
+    time.sleep(5)
     xshell_import_cmd([cmd42])
     time.sleep(8)
     xshell_import_cmd([cmd43])
