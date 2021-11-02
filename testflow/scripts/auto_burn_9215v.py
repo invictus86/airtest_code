@@ -216,6 +216,7 @@ def auto_xshell_input():
                  cmd30, cmd31, cmd32, cmd33, cmd34]
 
     xshell_import_cmd(list_cmd1)
+    time.sleep(10)
 
     xshell_import_cmd([cmd35])
     time.sleep(55)
