@@ -11,7 +11,7 @@ import socket
 from airtest.core.settings import Settings
 from ektlib import ekt_rds, ekt_dta, ekt_file, ekt_net
 
-Settings.FIND_TIMEOUT = 60
+Settings.FIND_TIMEOUT = 30
 
 logging.basicConfig(level=logging.INFO,  # 控制台打印的日志级别
                     filename='auto_burn.log',
