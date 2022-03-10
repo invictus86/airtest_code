@@ -41,19 +41,6 @@ except:
     touch(Template(r"../res/img/ATserver/atserver_confirm.png"))
 time.sleep(3)
 
-while True:
-    is_ssi_correct = input("example : 1\r\n"
-                           "flash_erase /dev/mtd/upg_kernel 0 0\r\n"
-                           "nandwrite -p /dev/mtd/upg_kernel /mnt/hdd_1/ssi.uImage\r\n"
-                           "flash_erase /dev/mtd/upg_rootfs 0 0\r\n"
-                           "nandwrite -p /dev/mtd/upg_rootfs /mnt/hdd_1/ssi.bin\r\n"
-                           "please input is ssi correct: ")
-    print("you choose is_ssi_correct: {}".format(is_ssi_correct))
-    if is_ssi_correct == "1":
-        break
-    else:
-        print("please input correct is_ssi_correct")
-
 win32api.ShellExecute(0, 'open', r'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Xmanager Enterprise 5\Xshell',
                       '', '', 1)
 # 防止五秒没打开xhsell
@@ -101,6 +88,10 @@ ADDR = (HOST, PORT)
 
 net = ekt_net.EktNetClient(current_ip, 8900)
 rds = ekt_rds.EktRds(net)
+
+rds.usb_switch_pc()
+time.sleep(5)
+file_operate.cope_file_src_dst(r"D:\auto_burn_module\MTK_burn_script\write_otp_sck1", r"F:write_otp_sck1")
 
 time.sleep(3)
 rds.usb_switch_stb()
@@ -163,14 +154,8 @@ def auto_xshell_input():
     power_on()
     sleep(30)
 
-    xshell_import_cmd(["flash_erase /dev/mtd/upg_kernel 0 0"])
-    time.sleep(10)
-    xshell_import_cmd(["nandwrite -p /dev/mtd/upg_kernel /mnt/hdd_1/ssi.uImage"])
-    time.sleep(10)
-    xshell_import_cmd(["flash_erase /dev/mtd/upg_rootfs 0 0"])
-    time.sleep(10)
-    xshell_import_cmd(["nandwrite -p /dev/mtd/upg_rootfs /mnt/hdd_1/ssi.bin"])
-    time.sleep(15)
+    xshell_import_cmd(["/mnt/hdd_1/write_otp_sck1"])
+    time.sleep(5)
 
 
 auto_xshell_input()
