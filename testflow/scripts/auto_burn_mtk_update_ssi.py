@@ -41,34 +41,18 @@ except:
     touch(Template(r"../res/img/ATserver/atserver_confirm.png"))
 time.sleep(3)
 
-ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 1)
 while True:
-    flash_type = input("1 :  nand flash\r\n"
-                       "2 :  emmc flash\r\n"
-                       "please input flash type: ")
-    print("you choose flash type: {}".format(flash_type))
-    if flash_type == "1" or flash_type == "2":
+    is_ssi_correct = input("example : 1\r\n"
+                           "flash_erase /dev/mtd/upg_kernel 0 0\r\n"
+                           "nandwrite -p /dev/mtd/upg_kernel /mnt/hdd_1/ssi.uImage\r\n"
+                           "flash_erase /dev/mtd/upg_rootfs 0 0\r\n"
+                           "nandwrite -p /dev/mtd/upg_rootfs /mnt/hdd_1/ssi.bin\r\n"
+                           "please input is ssi correct: ")
+    print("you choose is_ssi_correct: {}".format(is_ssi_correct))
+    if is_ssi_correct == "1":
         break
     else:
-        print("please input correct flash type")
-
-while True:
-    mac_address = input("example : 11:22:33:44:55:66\r\n"
-                        "please input mac address: ")
-    print("you choose mac_address: {}".format(mac_address))
-    if len(mac_address) == 17:
-        break
-    else:
-        print("please input correct mac address")
-
-while True:
-    sn = input("example : EKDIN4805MP00003\r\n"
-               "please input sn: ")
-    print("you choose sn: {}".format(sn))
-    if len(sn) == 16:
-        break
-    else:
-        print("please input correct sn")
+        print("please input correct is_ssi_correct")
 
 win32api.ShellExecute(0, 'open', r'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Xmanager Enterprise 5\Xshell',
                       '', '', 1)
@@ -117,17 +101,6 @@ ADDR = (HOST, PORT)
 
 net = ekt_net.EktNetClient(current_ip, 8900)
 rds = ekt_rds.EktRds(net)
-rds.usb_switch_pc()
-# 防止电脑启动U盘慢
-try:
-    time.sleep(5)
-    filepath = "F:"
-    file_operate.del_all_file(filepath)
-except:
-    time.sleep(5)
-    filepath = "F:"
-    file_operate.del_all_file(filepath)
-file_operate.cope_floder_src_dst(r"D:\auto_burn_module\MTK_burn_script\write_serial", r"F:write_serial")
 
 time.sleep(3)
 rds.usb_switch_stb()
@@ -190,12 +163,14 @@ def auto_xshell_input():
     power_on()
     sleep(30)
 
-    xshell_import_cmd(["cd /mnt/hdd_1/write_serial/mtk/"])
-    if flash_type == "1":
-        xshell_import_cmd(["sh ./write_serial.sh {} {} ./hdcp_crc.bin ./ A11 nand".format(mac_address, sn)])
-    elif flash_type == "2":
-        xshell_import_cmd(["sh ./write_serial.sh {} {} ./hdcp_crc.bin ./ A11 emmc".format(mac_address, sn)])
-    xshell_import_cmd(["hexdump -C /dev/mtd/serial"])
+    xshell_import_cmd(["flash_erase /dev/mtd/upg_kernel 0 0"])
+    time.sleep(10)
+    xshell_import_cmd(["nandwrite -p /dev/mtd/upg_kernel /mnt/hdd_1/ssi.uImage"])
+    time.sleep(10)
+    xshell_import_cmd(["flash_erase /dev/mtd/upg_rootfs 0 0"])
+    time.sleep(10)
+    xshell_import_cmd(["nandwrite -p /dev/mtd/upg_rootfs /mnt/hdd_1/ssi.bin"])
+    time.sleep(15)
 
 
 auto_xshell_input()
