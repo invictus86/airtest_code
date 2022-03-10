@@ -91,7 +91,7 @@ rds = ekt_rds.EktRds(net)
 
 rds.usb_switch_pc()
 time.sleep(5)
-file_operate.cope_file_src_dst(r"D:\auto_burn_module\MTK_burn_script\write_otp_sck1", r"F:write_otp_sck1")
+file_operate.cope_file_src_dst(r"D:\auto_burn_module\MTK_burn_script\bootlogo.jpg", r"F:cbootlogo.jpg")
 
 time.sleep(3)
 rds.usb_switch_stb()
@@ -154,8 +154,34 @@ def auto_xshell_input():
     power_on()
     sleep(30)
 
-    xshell_import_cmd(["/mnt/hdd_1/write_otp_sck1"])
+    xshell_import_cmd(["mount | grep config | grep ext4"])
     time.sleep(5)
+    xshell_import_cmd(["mount -o remount rw /config/"])
+    time.sleep(5)
+    xshell_import_cmd(["mount | grep config | grep ext4"])
+    time.sleep(5)
+    xshell_import_cmd(["mkdir /tmp/t"])
+    time.sleep(5)
+    xshell_import_cmd(["mount /dev/sda1 /tmp/t"])
+    time.sleep(5)
+    xshell_import_cmd(["cp /tmp/t/bootlogo.jpg /config/bootlogo.jpg"])
+    time.sleep(5)
+    xshell_import_cmd(["umount /config/"])
+    time.sleep(5)
+
+    power_off()
+    sleep(3)
+    power_on()
+    # sleep(20)
+    sleep(15)
+    for _ in range(15):
+        text("A2tmGHgGjYgV1MN4")
+        keyevent("{ENTER}")
+        sleep(1)
+    time.sleep(5)
+    # assert_exists(Template(r"../res/img/DCD7015v/boot_cmd.png", threshold=0.9))
+
+    xshell_import_cmd(["setenv db_table 0; save; reset"])
 
 
 auto_xshell_input()
