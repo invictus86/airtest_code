@@ -7,9 +7,8 @@ import json
 import win32api
 import ctypes
 import logging
-import socket
 from airtest.core.settings import Settings
-from ektlib import ekt_rds, ekt_dta, ekt_file, ekt_net
+from file_operate import v5_sys_init
 
 Settings.FIND_TIMEOUT = 30
 
@@ -46,29 +45,6 @@ except:
 
 time.sleep(3)
 
-def get_local_ip():
-    """
-    get local ip
-    :return:
-    """
-    addrs = socket.getaddrinfo(socket.gethostname(), None)
-    for item in addrs:
-        if str(item[-1][0])[0:3] == "192":
-            ip = str(item[-1][0])
-            print("current ip is : {}".format(ip))
-    return ip
-
-def v5_sys_init():
-    """
-    init the system,establish connect to the ATserver.
-    :return: rds(EKTRds instance),doc(EktFileCfg instance),dta(EktDtDevice instance)
-    """
-    curretn_ip = get_local_ip()
-    net = ekt_net.EktNetClient(curretn_ip, 8900)
-    rds = ekt_rds.EktRds(net)
-    dta = ekt_dta.EktDtDevice(net)
-    doc = ekt_file.EktFileCfg(net)
-    return rds, doc, dta
 
 def xshell_import_cmd(cmd):
     # transfer_str = ""
@@ -82,6 +58,7 @@ def xshell_import_cmd(cmd):
     keyevent("{ENTER}")
     sleep(1.5)
 
+
 with open(r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\config.json", 'r') as load_f:
     load_dict = json.load(load_f)
     # print(load_dict)
@@ -89,7 +66,6 @@ with open(r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\con
     dsn7514i_download_file = load_dict.get("dsn7514i_download_file")
     print(dsn7514i_stream_file)
     print(dsn7514i_download_file)
-
 
 # double_click(Template(r"../res/img/open_hi_tool.png", threshold=0.7))
 win32api.ShellExecute(0, 'open', r'D:\7514\wingdb_tool\WinGDB_v1.4.0\WinGDB_v1.4.0\WinGDB_v1.4.0.exe', '', '', 1)

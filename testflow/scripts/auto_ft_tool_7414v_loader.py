@@ -3,7 +3,7 @@ __author__ = "ivan.zhao"
 
 from airtest.core.api import *
 from airtest.cli.parser import cli_setup
-import win32api, json
+import json
 import ctypes
 import logging
 
@@ -41,7 +41,6 @@ def xshell_import_cmd(cmd):
 
 # script content
 print("start...")
-
 
 double_click(Template(r"../res/img/open_ft_tool.png", threshold=0.7))
 time.sleep(1)

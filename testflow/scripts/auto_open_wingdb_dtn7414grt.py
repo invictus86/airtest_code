@@ -44,6 +44,7 @@ def xshell_import_cmd(cmd):
     keyevent("{ENTER}")
     sleep(1.5)
 
+
 with open(r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\config.json", 'r') as load_f:
     load_dict = json.load(load_f)
     # print(load_dict)
@@ -53,7 +54,8 @@ with open(r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\con
     print(dtn7414g_download_file)
 
 # double_click(Template(r"../res/img/open_hi_tool.png", threshold=0.7))
-win32api.ShellExecute(0, 'open', r'D:\auto_burn_module\DCN7414g\Loader_for_DCN7414g\WinGDB_v1.3.0\WinGDB_v1.3.0.exe', '', '', 1)
+win32api.ShellExecute(0, 'open', r'D:\auto_burn_module\DCN7414g\Loader_for_DCN7414g\WinGDB_v1.3.0\WinGDB_v1.3.0.exe',
+                      '', '', 1)
 # assert_exists(Template(r"../res/img/wingdb/wingdb_ico.png", threshold=0.9))
 # logging.info('assert_exists(Template(r"../res/img/wingdb/wingdb_ico.png", threshold=0.9))')
 time.sleep(3)

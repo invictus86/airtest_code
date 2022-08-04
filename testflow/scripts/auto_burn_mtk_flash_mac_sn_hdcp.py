@@ -8,6 +8,7 @@ import sys, os
 import file_operate
 from ektlib import ekt_rds, ekt_net
 import ctypes
+from file_operate import get_local_ip
 
 if not cli_setup():
     auto_setup(__file__, logdir=r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\log", devices=[
@@ -94,20 +95,6 @@ except:
 
 # script content
 print("start...")
-
-
-def get_local_ip():
-    """
-    get local ip
-    :return:
-    """
-    addrs = socket.getaddrinfo(socket.gethostname(), None)
-    for item in addrs:
-        if str(item[-1][0])[0:3] == "192":
-            ip = str(item[-1][0])
-            print("current ip is : {}".format(ip))
-    return ip
-
 
 current_ip = get_local_ip()
 HOST = current_ip

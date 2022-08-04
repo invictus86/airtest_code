@@ -1,6 +1,7 @@
-import os, shutil
+import shutil
 import os
-import string
+import socket
+from ektlib import ekt_net, ekt_rds
 
 
 def remove_file(del_file):
@@ -22,6 +23,7 @@ def cope_file_src_dst(src_file, dst_file):
     :return:
     """
     shutil.copy2(src_file, dst_file)
+
 
 def cope_floder_src_dst(src_file, dst_file):
     """
@@ -72,6 +74,30 @@ def del_all_file(filepath):
             os.remove(file_path)
         elif os.path.isdir(file_path):
             shutil.rmtree(file_path)
+
+
+def get_local_ip():
+    """
+    get local ip
+    :return:
+    """
+    addrs = socket.getaddrinfo(socket.gethostname(), None)
+    for item in addrs:
+        if str(item[-1][0])[0:3] == "192":
+            ip = str(item[-1][0])
+            print("current ip is : {}".format(ip))
+    return ip
+
+
+def v5_sys_init():
+    """
+    init the system,establish connect to the ATserver.
+    :return: rds(EKTRds instance),doc(EktFileCfg instance),dta(EktDtDevice instance)
+    """
+    curretn_ip = get_local_ip()
+    net = ekt_net.EktNetClient(curretn_ip, 8900)
+    rds = ekt_rds.EktRds(net)
+    return rds, None, None
 
 
 if __name__ == '__main__':

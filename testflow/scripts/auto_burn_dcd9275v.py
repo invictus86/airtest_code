@@ -8,6 +8,7 @@ import sys, os
 import file_operate
 from ektlib import ekt_rds, ekt_net
 import ctypes
+from file_operate import get_local_ip
 
 if not cli_setup():
     auto_setup(__file__, logdir=r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\log", devices=[
@@ -64,20 +65,6 @@ if not cli_setup():
 # script content
 print("start...")
 
-
-def get_local_ip():
-    """
-    get local ip
-    :return:
-    """
-    addrs = socket.getaddrinfo(socket.gethostname(), None)
-    for item in addrs:
-        if str(item[-1][0])[0:3] == "192":
-            ip = str(item[-1][0])
-            print("current ip is : {}".format(ip))
-    return ip
-
-
 current_ip = get_local_ip()
 HOST = current_ip
 PORT = 8900
@@ -92,7 +79,8 @@ filepath = "F:"
 file_operate.del_all_file(filepath)
 file_operate.cope_file_src_dst(r"D:\DCD9275v\dsd9215_fuse\fastboot.bin",
                                r"F:fastboot.bin")
-file_operate.cope_file_src_dst(r"D:\DCD9275v\dsd9215_fuse\pv_cfg_dbg_vmx_production.txt", r"F:pv_cfg_dbg_vmx_production.txt")
+file_operate.cope_file_src_dst(r"D:\DCD9275v\dsd9215_fuse\pv_cfg_dbg_vmx_production.txt",
+                               r"F:pv_cfg_dbg_vmx_production.txt")
 file_operate.cope_file_src_dst(r"D:\DCD9275v\dsd9215_fuse\sample_product_pv_stb", r"F:sample_product_pv_stb")
 
 time.sleep(3)
@@ -257,11 +245,12 @@ while True:
     a = input("please input your choose:")
     if a == "":
         if not cli_setup():
-            auto_setup(__file__, logdir=r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\log", devices=[
-                #             "Windows:///524676",
-                "Windows:///?title_re=localhost_serial*",
-                #         "Windows:///?title_re=*Xshell",
-            ])
+            auto_setup(__file__, logdir=r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\log",
+                       devices=[
+                           #             "Windows:///524676",
+                           "Windows:///?title_re=localhost_serial*",
+                           #         "Windows:///?title_re=*Xshell",
+                       ])
         auto_xshell_input()
         ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 1)
     if a == "q" or a == "Q":

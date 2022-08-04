@@ -3,7 +3,7 @@ __author__ = "ivan.zhao"
 
 from airtest.core.api import *
 from airtest.cli.parser import cli_setup
-import win32api, json
+import json
 import ctypes
 import logging
 

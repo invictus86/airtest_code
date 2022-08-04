@@ -1,18 +1,14 @@
-import socket, time, sys, os
+import sys, os
 import ctypes
 
 parentdir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, parentdir)
 
-# import ekt_rds, ekt_dta, ekt_file, ekt_net
-from ektlib import ekt_rds, ekt_dta, ekt_file, ekt_net
 from airtest.core.api import *
 from airtest.cli.parser import cli_setup
-import json
-import win32api
 import file_operate
 import logging
-
+from file_operate import v5_sys_init
 
 logging.basicConfig(level=logging.INFO,  # 控制台打印的日志级别
                     filename='auto_burn.log',
@@ -22,32 +18,6 @@ logging.basicConfig(level=logging.INFO,  # 控制台打印的日志级别
                     '%(asctime)s - %(pathname)s[line:%(lineno)d] - %(levelname)s: %(message)s'
                     # 日志格式
                     )
-
-def get_local_ip():
-    """
-    get local ip
-    :return:
-    """
-    addrs = socket.getaddrinfo(socket.gethostname(), None)
-    for item in addrs:
-        if str(item[-1][0])[0:3] == "192":
-            ip = str(item[-1][0])
-            print("current ip is : {}".format(ip))
-            logging.info("current ip is : {}".format(ip))
-    return ip
-
-
-def v5_sys_init():
-    """
-    init the system,establish connect to the ATserver.
-    :return: rds(EKTRds instance),doc(EktFileCfg instance),dta(EktDtDevice instance)
-    """
-    curretn_ip = get_local_ip()
-    net = ekt_net.EktNetClient(curretn_ip, 8900)
-    rds = ekt_rds.EktRds(net)
-    dta = ekt_dta.EktDtDevice(net)
-    doc = ekt_file.EktFileCfg(net)
-    return rds, doc, dta
 
 
 def v5_usb_init():

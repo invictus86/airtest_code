@@ -8,6 +8,7 @@ import sys, os
 import file_operate
 from ektlib import ekt_rds, ekt_net
 import ctypes
+from file_operate import get_local_ip
 
 if not cli_setup():
     auto_setup(__file__, logdir=r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\log", devices=[
@@ -59,20 +60,6 @@ if not cli_setup():
 
 # script content
 print("start...")
-
-
-def get_local_ip():
-    """
-    get local ip
-    :return:
-    """
-    addrs = socket.getaddrinfo(socket.gethostname(), None)
-    for item in addrs:
-        if str(item[-1][0])[0:3] == "192":
-            ip = str(item[-1][0])
-            print("current ip is : {}".format(ip))
-    return ip
-
 
 current_ip = get_local_ip()
 HOST = current_ip
@@ -162,7 +149,6 @@ def auto_xshell_input():
     power_on()
     sleep(5)
 
-
     for _ in range(10):
         text("A2tmGHgGjYgV1MN4")
         keyevent("{ENTER}")
@@ -182,7 +168,6 @@ def auto_xshell_input():
     cmd5 = "nor write 0x80007fc0 0x00260000 0x20000;"
     cmd6 = "tftp {}:boot_logo.bin;".format(current_ip)
     cmd7 = "nor write 0x80007fc0 0x00240000 0x20000;"
-
 
     cmd8 = "tftp {}:deviceinfo.abs".format(current_ip)
     cmd9 = "nand erase deviceinfo 0x00080000"
@@ -383,11 +368,12 @@ while True:
         time.sleep(3)
         ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 6)
         if not cli_setup():
-            auto_setup(__file__, logdir=r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\log", devices=[
-                #             "Windows:///524676",
-                "Windows:///?title_re=localhost_serial*",
-                #         "Windows:///?title_re=*Xshell",
-            ])
+            auto_setup(__file__, logdir=r"C:\Users\ivan.zhao\PycharmProjects\airtest_code\testflow\scripts\log",
+                       devices=[
+                           #             "Windows:///524676",
+                           "Windows:///?title_re=localhost_serial*",
+                           #         "Windows:///?title_re=*Xshell",
+                       ])
         auto_xshell_input()
         ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 1)
     elif a == "q" or a == "Q":

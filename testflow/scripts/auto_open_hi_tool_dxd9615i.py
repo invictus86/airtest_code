@@ -4,7 +4,6 @@ __author__ = "ivan.zhao"
 from airtest.core.api import *
 from airtest.cli.parser import cli_setup
 import json
-import win32api
 import ctypes
 
 if not cli_setup():
@@ -106,51 +105,22 @@ time.sleep(5)
 #         os.system("taskkill /F /IM HiTool.exe")
 #         break
 
-import socket, time, sys, os
+import sys, os
 import ctypes
 
 parentdir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, parentdir)
 
-# import ekt_rds, ekt_dta, ekt_file, ekt_net
-from ektlib import ekt_rds, ekt_dta, ekt_file, ekt_net
 from airtest.core.api import *
 from airtest.cli.parser import cli_setup
-import json
-import win32api
 import file_operate
+from file_operate import v5_sys_init
 
 
 def cope_file_to_new_path(old_file_path, new_file_path):
     with open(old_file_path, "rb") as f1, open(new_file_path, "wb") as f2:
         content = f1.read()
         f2.write(content)
-
-
-def get_local_ip():
-    """
-    get local ip
-    :return:
-    """
-    addrs = socket.getaddrinfo(socket.gethostname(), None)
-    for item in addrs:
-        if str(item[-1][0])[0:3] == "192":
-            ip = str(item[-1][0])
-            print("current ip is : {}".format(ip))
-    return ip
-
-
-def v5_sys_init():
-    """
-    init the system,establish connect to the ATserver.
-    :return: rds(EKTRds instance),doc(EktFileCfg instance),dta(EktDtDevice instance)
-    """
-    curretn_ip = get_local_ip()
-    net = ekt_net.EktNetClient(curretn_ip, 8900)
-    rds = ekt_rds.EktRds(net)
-    dta = ekt_dta.EktDtDevice(net)
-    doc = ekt_file.EktFileCfg(net)
-    return rds, doc, dta
 
 
 def v5_usb_init(cd5_file):
@@ -293,5 +263,3 @@ os.system("taskkill /F /IM ATServer.exe")
 #     if a == "q" or a == "Q":
 #         os.system("taskkill /F /IM ATServer.exe")
 #         break
-
-
